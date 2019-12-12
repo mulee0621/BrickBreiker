@@ -4,6 +4,7 @@ public class Game {
 	public static void main(String[] args) {
 		
 		//Imlon gonna do this part
+		//not Imlon it is Imron
 		 // irritating imlo gonna do this as if.
 		
 		JFrame f = new JFrame();// creating instance of JFrame
