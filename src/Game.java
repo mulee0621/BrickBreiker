@@ -13,35 +13,40 @@ import acm.util.RandomGenerator;
 
 public class Game extends GraphicsProgram {
 	private static final long serialVersionUID = 1L;
-	protected static boolean GameOver=false;
-	
-	//background and size  of screen 
+	protected static boolean GameOver = false;
+
+	// background and size of screen
 	@Override
 	public void init() {
 		addKeyListeners();
-		setBackground(Color.black);
+		setBackground(Color.BLACK);
 		setSize(700, 600);
 	}
+
 	@Override
 	public void run() {
 		addWall();
 		addBar();
 		addBall();
+
 	}
 
-
-	//method creates an object a ball
+	// method creates an object a ball
 	private void addBall() {
-		
+
 	}
-	//method creates an object a bar
+
+	// method creates an object a bar
 	private void addBar() {
-		
+
 	}
-	//method creates an object a wall
+
+	// method creates an object a wall
 	private void addWall() {
-		
+		Wall wall = new Wall();
+		add(wall);
 	}
+
 	public static void main(String[] args) {
 		new Game().start();
 	}
