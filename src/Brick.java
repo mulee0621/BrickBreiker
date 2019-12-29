@@ -12,17 +12,10 @@ import acm.graphics.*;
 import acm.program.*;
 import acm.util.RandomGenerator;
 
-public class Brick extends GraphicsProgram {
+public class Brick extends GRect{
 	public Brick() {
-		GRect rect1 = new GRect(100, 50, 50, 30);
-		rect1.setFilled(true);
-		rect1.setColor(Color.RED);
-		add(rect1);
-		
-		GRect rect2 = new GRect(200, 50, 50, 30);
-		rect2.setFilled(true);
-		rect2.setColor(Color.YELLOW);
-		add(rect2);
-
+		super(100, 50, 50, 30);
+		setFilled(true);
+		setColor(Color.RED);
 	}
 }

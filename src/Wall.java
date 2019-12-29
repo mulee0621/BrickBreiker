@@ -19,10 +19,9 @@ public  class Wall extends GPen {
 	public Wall(){
 		
 	super(1,600);
-	drawLine(0,-599); 
-	drawLine(697,0);
-	drawLine(0,597);
-	
+	drawLine(0,-599.5); 
+	drawLine(683,0);
+	drawLine(0,600);
 	setColor(Color.YELLOW);
 		
 	}
