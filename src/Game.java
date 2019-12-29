@@ -28,6 +28,7 @@ public class Game extends GraphicsProgram {
 		addWall();
 		addBar();
 		addBall();
+		addBrick();
 
 	}
 
@@ -45,6 +46,13 @@ public class Game extends GraphicsProgram {
 	private void addWall() {
 		Wall wall = new Wall();
 		add(wall);
+		
+	}
+	
+	// method creates an object a bricks
+	private void addBrick() {
+		Brick brick = new Brick();
+		add(brick);
 	}
 
 	public static void main(String[] args) {
