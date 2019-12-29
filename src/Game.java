@@ -13,14 +13,18 @@ import acm.util.RandomGenerator;
 
 public class Game extends GraphicsProgram {
 	private static final long serialVersionUID = 1L;
+	public static final int WINDOW_WIDTH=700;
+	public static final int WINDOW_HEIGHT=600;
 	protected static boolean GameOver = false;
+	private Bar bar;
+	protected static Wall wall;
 
 	// background and size of screen
 	@Override
 	public void init() {
 		addKeyListeners();
 		setBackground(Color.BLACK);
-		setSize(700, 600);
+		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 	}
 
 	@Override
@@ -32,6 +36,17 @@ public class Game extends GraphicsProgram {
 
 	}
 
+	public void keyPressed(KeyEvent e) {
+		switch (e.getKeyCode()) {
+		case KeyEvent.VK_RIGHT:
+			bar.moveRight();
+			break;
+		case KeyEvent.VK_LEFT:
+			bar.moveLeft();
+			break;
+		}
+	}
+
 	// method creates an object a ball
 	private void addBall() {
 
@@ -39,12 +54,13 @@ public class Game extends GraphicsProgram {
 
 	// method creates an object a bar
 	private void addBar() {
-
+		bar = new Bar();
+		add(bar);
 	}
 
 	// method creates an object a wall
 	private void addWall() {
-		Wall wall = new Wall();
+		wall = new Wall();
 		add(wall);
 		
 	}
