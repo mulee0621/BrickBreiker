@@ -77,10 +77,19 @@ public class Game extends GraphicsProgram {
 	}
 	
 	// method creates an object a bricks
-	private void addBrick() {
-		Brick brick = new Brick();
-		add(brick);
-	}
+		private void addBrick() {
+			Brick [] bricks = new Brick[11];
+			int x = 15;
+			int y = 15;
+			for (int i = 0; i < bricks.length; i++) {
+				bricks[i]=new Brick(x,y,Color.GRAY);
+				add(bricks[i]);
+				x += 60;
+			}	
+			
+			bricks[7].setColor(Color.RED);
+		}
+
 
 	public static void main(String[] args) {
 		new Game().start();

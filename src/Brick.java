@@ -13,11 +13,9 @@ import acm.program.*;
 import acm.util.RandomGenerator;
 
 public class Brick extends GRect{
-	//jhghjgjhgjhjfjffhjfjf
-	//we learned new feature 
-	public Brick() {
-		super(100, 50, 50, 30);
+	public Brick(double x, double y, Color c) {
+		super(x, y, 50, 30);
 		setFilled(true);
-		setColor(Color.RED);
+		setColor(c);
 	}
 }
