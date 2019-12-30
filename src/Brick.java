@@ -13,6 +13,7 @@ import acm.program.*;
 import acm.util.RandomGenerator;
 
 public class Brick extends GRect{
+	//jhghjgjhgjhjfjffhjfjf
 	public Brick() {
 		super(100, 50, 50, 30);
 		setFilled(true);
