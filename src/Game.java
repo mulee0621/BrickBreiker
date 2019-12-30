@@ -18,6 +18,7 @@ public class Game extends GraphicsProgram {
 	protected static boolean GameOver = false;
 	private Bar bar;
 	protected static Wall wall;
+	protected static Ball ball;
 
 	// background and size of screen
 	@Override
@@ -44,12 +45,22 @@ public class Game extends GraphicsProgram {
 		case KeyEvent.VK_LEFT:
 			bar.moveLeft();
 			break;
+		case KeyEvent.VK_SPACE:
+			moveBall();
+			break;
 		}
+	}
+
+	private void moveBall() {
+		Thread t1 = new Thread(ball);
+		t1.start();
+		
 	}
 
 	// method creates an object a ball
 	private void addBall() {
-
+		ball = new Ball();
+		add(ball);
 	}
 
 	// method creates an object a bar
