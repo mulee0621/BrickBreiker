@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import acm.graphics.*;
 import acm.program.*;
 import acm.util.RandomGenerator;
+import java.util.Random;
 
 public class Game extends GraphicsProgram {
 	private static final long serialVersionUID = 1L;
@@ -77,18 +78,28 @@ public class Game extends GraphicsProgram {
 	}
 	
 	// method creates an object a bricks
-		private void addBrick() {
-			Brick [] bricks = new Brick[11];
-			int x = 15;
-			int y = 15;
+	private void addBrick() {
+		Brick [] bricks = new Brick[11];
+		int x = 15;
+		int y = 15;
+		for(int k = 0; k < 6; k++) {
 			for (int i = 0; i < bricks.length; i++) {
-				bricks[i]=new Brick(x,y,Color.GRAY);
+				bricks[i]=new Brick(x,y,Color.yellow);
+					if(k == 1) bricks[i]=new Brick(x,y,Color.green);
+					if(k == 3) bricks[i]=new Brick(x,y,Color.blue);
+					if(k == 5) bricks[i]=new Brick(x,y,Color.magenta);
+				
+					if(i == 1) bricks[i]=new Brick(x,y,Color.cyan);
+					if(i == 4) bricks[i]=new Brick(x,y,Color.red);
+					if(i == 7) bricks[i]=new Brick(x,y,Color.orange);
+					if(i == 10) bricks[i]=new Brick(x,y,Color.pink);
 				add(bricks[i]);
 				x += 60;
-			}	
-			
-			bricks[7].setColor(Color.RED);
+			} 
+			x = 15 ;
+			y += 40	;
 		}
+	}
 
 
 	public static void main(String[] args) {
