@@ -8,7 +8,7 @@ public class Ball extends GOval implements Runnable{
 	private static double posy = 480;
 	private static double grossx =23;
 	private static double grossy = 23;
-	private static double PAUSE_TIME = 200;
+	private static double PAUSE_TIME = 0.546;
 	
 	//konstruktoren
 	public Ball() {
@@ -19,33 +19,43 @@ public class Ball extends GOval implements Runnable{
 	
 	
 	//methoden die den Ball bewegen
-	
+	/**
+	 * @
+	 */
 	public void bewegung() {
+		boolean xfirst = true;
 		int xwert = 0;
 		int ywert = -1;
 		int i = 0;
 		for( ;!Game.GameOver; i++){
 			posy = getY() + ywert;
 			posx = getX() + xwert;
-			setLocation(posy,posx);
+			setLocation(posx,posy);
 			pause(PAUSE_TIME);
-			if(posy <= 2) {
+			if(posy <= 20) {
 				ywert = 1;
-				xwert = 2;
-				if(posx >= 698) {
-					xwert = -2;
-				}
-			}
-			if(posy >= 301) {					
-				ywert = -1;
-				if(posx < 1 ) {
+				if( xfirst ) {
+					xfirst = false;
 					xwert = 2;
 				}
 			}
+			if(posx >= 650) {
+				xwert = -2;
+			}
+			if(posx < 20) {
+				xwert = +2;
+			}
+			if(posy >= 301) {					
+				ywert = -1;
+			}
+			posy = getY() + ywert;
+			posx = getX() + xwert;
+			setLocation(posx,posy);
+			System.out.println( "X:" + posx + ", Y:" + posy );
+			i = 0;
 		}
-		i=0;
-	}
 
+	}
 
 	@Override
 	public void run() {
