@@ -20,13 +20,23 @@ public class Game extends GraphicsProgram {
 	private Bar bar;
 	protected static Wall wall;
 	protected static Ball ball;
+	private GameSound sound;
+	private Thread soundT;
+	
 
 	// background and size of screen
 	@Override
 	public void init() {
+		addSound();
 		addKeyListeners();
 		setBackground(Color.BLACK);
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+	}
+
+	private void addSound() {
+		sound = new GameSound();
+		soundT=new Thread(sound);
+		soundT.start();
 	}
 
 	@Override

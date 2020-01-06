@@ -51,7 +51,7 @@ public class Ball extends GOval implements Runnable{
 			posy = getY() + ywert;
 			posx = getX() + xwert;
 			setLocation(posx,posy);
-			System.out.println( "X:" + posx + ", Y:" + posy );
+			//System.out.println( "X:" + posx + ", Y:" + posy );
 			i = 0;
 		}
 
