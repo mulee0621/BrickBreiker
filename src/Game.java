@@ -17,7 +17,7 @@ public class Game extends GraphicsProgram {
 	public static final int WINDOW_WIDTH=700;
 	public static final int WINDOW_HEIGHT=600;
 	protected static boolean GameOver = false;
-	private Bar bar;
+	protected static Bar bar;
 	protected static Wall wall;
 	protected static Ball ball;
 	private GameSound sound;
