@@ -56,6 +56,7 @@ public class Ball extends GOval implements Runnable{
 
 	@Override
 	public void run() {
+	
 		bewegung();
 	}
 }

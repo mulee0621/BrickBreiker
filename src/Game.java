@@ -22,6 +22,7 @@ public class Game extends GraphicsProgram {
 	protected static Ball ball;
 	private GameSound sound;
 	private Thread soundT;
+	protected static  boolean oneTime=true;
 	
 
 	// background and size of screen
@@ -57,14 +58,17 @@ public class Game extends GraphicsProgram {
 			bar.moveLeft();
 			break;
 		case KeyEvent.VK_SPACE:
-			moveBall();
+			 moveBall();
 			break;
 		}
 	}
 
 	private void moveBall() {
+		
+		if (oneTime) {
 		Thread t1 = new Thread(ball);
 		t1.start();
+		oneTime=false; }
 		
 	}
 
