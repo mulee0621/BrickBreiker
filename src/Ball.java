@@ -8,7 +8,7 @@ public class Ball extends GOval implements Runnable{
 	private static double posy = 480;
 	private static double grossx =23;
 	private static double grossy = 23;
-	private static double PAUSE_TIME = 0.546;
+	private static double PAUSE_TIME = 1.2;
 	
 	//konstruktoren
 	public Ball() {
@@ -45,13 +45,10 @@ public class Ball extends GOval implements Runnable{
 			if(posx < 20) {
 				xwert = +2;
 			}
-			if(posy >= 301) {					
+			if(posy >= 501) {					
 				ywert = -1;
 			}
-			posy = getY() + ywert;
-			posx = getX() + xwert;
-			setLocation(posx,posy);
-			//System.out.println( "X:" + posx + ", Y:" + posy );
+			System.out.println( "X:" + posx + ", Y:" + posy );
 			i = 0;
 		}
 

@@ -37,7 +37,7 @@ public class Game extends GraphicsProgram {
 		sound = new GameSound();
 		soundT=new Thread(sound);
 		soundT.start();
-	}
+	} 
 
 	@Override
 	public void run() {
