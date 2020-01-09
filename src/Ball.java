@@ -6,9 +6,9 @@ public class Ball extends GOval implements Runnable{
 	//variablen für ball
 	private static double posx = 350;
 	private static double posy = 480;
-	private static double grossx =23;
-	private static double grossy = 23;
-	private static double PAUSE_TIME = 1.2;
+	private static double grossx =20;
+	private static double grossy = 20;
+	private static double PAUSE_TIME = 2.2;
 	
 	//konstruktoren
 	public Ball() {
@@ -32,22 +32,25 @@ public class Ball extends GOval implements Runnable{
 			posx = getX() + xwert;
 			setLocation(posx,posy);
 			pause(PAUSE_TIME);
-			if(posy <= 20) {
+			if(posy <= 3) {
 				ywert = 1;
 				if( xfirst ) {
 					xfirst = false;
 					xwert = 2;
 				}
 			}
-			if(posx >= 650) {
+			if(posx >= 661) {
 				xwert = -2;
 			}
-			if(posx < 20) {
+			if(posx <= 3) {
 				xwert = +2;
 			}
-			if(posy >= 501) {					
+			if(Game.ball.getBounds().intersects(Game.bar.getBounds())) {					
 				ywert = -1;
-			}
+			} else  
+				Game.GameOver = false;
+			if(posy >= 600)
+				break;
 			System.out.println( "X:" + posx + ", Y:" + posy );
 			i = 0;
 		}
