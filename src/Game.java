@@ -24,6 +24,8 @@ public class Game extends GraphicsProgram {
 	private Thread soundT;
 	protected static  boolean oneTime=true;
 	
+	protected static Brick [] bricks;
+	
 
 	// background and size of screen
 	@Override
@@ -93,7 +95,7 @@ public class Game extends GraphicsProgram {
 	
 	// method creates an object a bricks
 	private void addBrick() {
-		Brick [] bricks = new Brick[11];
+		bricks = new Brick[11];
 		int x = 15;
 		int y = 15;
 		for(int k = 0; k < 6; k++) {

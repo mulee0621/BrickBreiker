@@ -45,7 +45,11 @@ public class Ball extends GOval implements Runnable{
 			if(posx <= 3) {
 				xwert = +2;
 			}
-			if(Game.ball.getBounds().intersects(Game.bar.getBounds())) {					
+			
+			for (int j = 0; j < Game.bricks.length; j++) {
+				if(getBounds().intersects(Game.bricks[j].getBounds())) Game.bricks[j].setVisible(false);
+			}
+			if(getBounds().intersects(Game.bar.getBounds())) {					
 				ywert = -1;
 			} else  
 				Game.GameOver = false;
@@ -59,7 +63,6 @@ public class Ball extends GOval implements Runnable{
 
 	@Override
 	public void run() {
-	
 		bewegung();
 	}
 }
