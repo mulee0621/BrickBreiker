@@ -58,6 +58,10 @@ public class Ball extends GOval implements Runnable{
 				if(getBounds().intersects(Game.bricks[k].getBounds())) { 	
 					Game.bricks[k].setLocation(-100, -100);
 					ywert = -ywert;
+					if( xfirst ) {
+						xfirst = false;
+						xwert = 2;
+					}
 					break;
 				}
 			}
