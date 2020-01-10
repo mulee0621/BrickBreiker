@@ -3,7 +3,7 @@ import java.awt.Graphics;
 import acm.graphics.*;
 import acm.graphics.GOval;
 public class Ball extends GOval implements Runnable{
-	//variablen für ball
+	//variablen fï¿½r ball
 	private static double posx = 350;
 	private static double posy = 480;
 	private static double grossx =20;
@@ -54,7 +54,7 @@ public class Ball extends GOval implements Runnable{
 			if(posy >= 600)
 				break;
 			
-			for(int k = 0;k<Game.bricks.length; k++) {
+			for(int k = 3;k<Game.bricks.length; k++) {
 				if(getBounds().intersects(Game.bricks[k].getBounds())) { 	
 					Game.bricks[k].setLocation(-100, -100);
 					ywert = -ywert;
