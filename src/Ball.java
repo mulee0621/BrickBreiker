@@ -8,7 +8,7 @@ public class Ball extends GOval implements Runnable{
 	private static double posy = 480;
 	private static double grossx =20;
 	private static double grossy = 20;
-	private static double PAUSE_TIME = 2.2;
+	private static double PAUSE_TIME = 4;
 	
 	//konstruktoren
 	public Ball() {
