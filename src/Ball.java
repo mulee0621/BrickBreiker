@@ -27,6 +27,7 @@ public class Ball extends GOval implements Runnable{
 		int xwert = 0;
 		int ywert = -1;
 		int i = 0;
+		int count = 0;
 		for( ;!Game.GameOver; i++){
 			posy = getY() + ywert;
 			posx = getX() + xwert;
@@ -46,15 +47,21 @@ public class Ball extends GOval implements Runnable{
 				xwert = +2;
 			}
 			
-			for (int j = 0; j < Game.bricks.length; j++) {
-				if(getBounds().intersects(Game.bricks[j].getBounds())) Game.bricks[j].setVisible(false);
-			}
 			if(getBounds().intersects(Game.bar.getBounds())) {					
 				ywert = -1;
 			} else  
 				Game.GameOver = false;
 			if(posy >= 600)
 				break;
+			
+			for(int k = 0; count != 66 ; i++) {
+				if(getBounds().intersects(Game.bricks[k].getBounds())) { 					
+					ywert = -ywert;
+					break;
+				}
+				count++;
+			}
+			
 			System.out.println( "X:" + posx + ", Y:" + posy );
 			i = 0;
 		}

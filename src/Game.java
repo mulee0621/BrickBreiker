@@ -22,9 +22,9 @@ public class Game extends GraphicsProgram {
 	protected static Ball ball;
 	private GameSound sound;
 	private Thread soundT;
-	protected static  boolean oneTime=true;
-	
-	protected static Brick [] bricks;
+	protected static boolean oneTime=true;
+	protected static Brick [] bricks ;  
+
 	
 
 	// background and size of screen
