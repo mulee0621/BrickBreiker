@@ -54,12 +54,12 @@ public class Ball extends GOval implements Runnable{
 			if(posy >= 600)
 				break;
 			
-			for(int k = 0; count != 66 ; i++) {
-				if(getBounds().intersects(Game.bricks[k].getBounds())) { 					
+			for(int k = 0;k<Game.bricks.length; k++) {
+				if(getBounds().intersects(Game.bricks[k].getBounds())) { 	
+					Game.bricks[k].setLocation(-100, -100);
 					ywert = -ywert;
 					break;
 				}
-				count++;
 			}
 			
 			System.out.println( "X:" + posx + ", Y:" + posy );
