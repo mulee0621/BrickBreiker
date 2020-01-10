@@ -95,12 +95,52 @@ public class Game extends GraphicsProgram {
 	
 	// method creates an object a bricks
 	private void addBrick() {
-		bricks = new Brick[11];
+		bricks = new Brick[66];
 		int x = 15;
 		int y = 15;
-		for(int k = 0; k < 6; k++) {
-			for (int i = 0; i < bricks.length; i++) {
+		for (int i = 0; i < bricks.length; i++) {
+			while(i<=10) {
 				bricks[i]=new Brick(x,y,Color.yellow);
+				add(bricks[i]);
+				x += 60;
+				i++;
+			} x = 15;
+			while(i>10 && i<=21) {
+				y = 55;
+				bricks[i]=new Brick(x,y,Color.red);
+				add(bricks[i]);
+				x += 60;
+				i++;
+			} x = 15;
+			while(i>21 && i<=32) {
+				y = 95;
+				bricks[i]=new Brick(x,y,Color.blue);
+				add(bricks[i]);
+				x += 60;
+				i++;
+			} x = 15;
+			while(i>32 && i<=43) {
+				y = 135;
+				bricks[i]=new Brick(x,y,Color.yellow);
+				add(bricks[i]);
+				x += 60;
+				i++;
+			} x = 15;
+			while(i>43 && i<=54) {
+				y = 175;
+				bricks[i]=new Brick(x,y,Color.red);
+				add(bricks[i]);
+				x += 60;
+				i++;
+			} x = 15;
+			while(i>54 && i<=65) {
+				y = 215;
+				bricks[i]=new Brick(x,y,Color.blue);
+				add(bricks[i]);
+				x += 60;
+				i++;
+			}
+					/* 
 					if(k == 1) bricks[i]=new Brick(x,y,Color.green);
 					if(k == 3) bricks[i]=new Brick(x,y,Color.blue);
 					if(k == 5) bricks[i]=new Brick(x,y,Color.magenta);
@@ -109,11 +149,10 @@ public class Game extends GraphicsProgram {
 					if(i == 4) bricks[i]=new Brick(x,y,Color.red);
 					if(i == 7) bricks[i]=new Brick(x,y,Color.orange);
 					if(i == 10) bricks[i]=new Brick(x,y,Color.pink);
-				add(bricks[i]);
-				x += 60;
-			} 
-			x = 15 ;
-			y += 40	;
+					 */
+				
+				
+		
 		}
 	}
 
