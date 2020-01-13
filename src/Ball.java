@@ -69,10 +69,11 @@ public class Ball extends GOval implements Runnable{
 				if(platschl > 80 && platschl < 85 )
 					xwert = xwert + 2.2345;
 				ywert = -1;
-			} else  
-				Game.GameOver = false;
-			if(posy >= 600)
+			} 
+			if(posy >= 600) {
+				Game.GameOver = true;
 				break;
+			}
 			
 			for(int k = 0;k<Game.bricks.length; k++) {
 				if(Game.bricks[k].getX() == posx && Game.bricks[k].getY() == posy) {

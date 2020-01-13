@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import acm.graphics.*;
 import acm.program.*;
 import acm.util.RandomGenerator;
+
 import java.util.Random;
 
 public class Game extends GraphicsProgram {
@@ -20,10 +21,20 @@ public class Game extends GraphicsProgram {
 	protected static Bar bar;
 	protected static Wall wall;
 	protected static Ball ball;
+	private boolean isBalMov=false;
 	private GameSound sound;
 	private Thread soundT;
 	protected static boolean oneTime=true;
-	protected static Brick [] bricks ;  
+	protected static Brick [] bricks ; 
+	
+	// score stuff
+		private int highScore;
+		private GLabel highScoreL;
+		private String highScoreString;
+		private int yourScore;
+		private GLabel yourScoreL;
+		private BufferedReader br = null;
+		PrintWriter pw;
 
 	
 
@@ -32,8 +43,8 @@ public class Game extends GraphicsProgram {
 	public void init() {
 		addSound();
 		addKeyListeners();
-		setBackground(Color.BLACK);
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+		welcome();
 	}
 
 	private void addSound() {
@@ -48,6 +59,110 @@ public class Game extends GraphicsProgram {
 		addBar();
 		addBall();
 		addBrick();
+		//waitForClick();
+		addCounter();
+		
+		//moveBall();
+
+	}
+	private void addCounter() {
+		addHighScore();
+		initialiseScore();
+
+		while (!GameOver) 
+			countScore();
+
+		 GameOver();
+		
+	}
+
+	private void GameOver() {
+
+		yourScoreL.setColor(Color.green);
+
+		// GameOver and Restart labels
+		GImage over = new GImage("GameOver.png");
+		over.scale(0.2);
+		add(over, (getWidth() - over.getWidth()) / 2, getHeight() / 2 - over.getHeight());
+	
+		// high score
+		if (highScore < yourScore) {
+			highScore = yourScore;
+			writeNewHighScore();
+		}
+
+		waitForClick();
+		removeAll();
+		beginNewGame();
+		
+	}
+
+	private void beginNewGame() {
+		GameOver = false;
+		yourScore = 0;
+		oneTime=true;
+		run();
+		
+		
+	}
+
+	private void writeNewHighScore() {
+		try {
+			pw = new PrintWriter(new FileWriter("highScore.txt"), false);
+			pw.println(highScore);
+			pw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+	private void countScore() {
+		yourScoreL.setLabel("YOUR SCORE: " + yourScore);
+		add(yourScoreL, 680-yourScoreL.getWidth(), 530);
+		yourScore++;
+		pause(100);
+	}
+
+	private void initialiseScore() {
+		yourScoreL = new GLabel("CURRENT SCORE: " + yourScore);
+		yourScoreL.setFont("Arial-18");
+		yourScoreL.setColor(Color.green);
+		
+	}
+
+	private void addHighScore() {
+		highScoreL = new GLabel("High Score: " + highScore);
+		highScoreL.setFont("Arial-18");
+		highScoreL.setColor(Color.green);
+		add(highScoreL, 10, 530);
+		
+	}
+
+	private void welcome() {
+		setBackground(Color.BLACK);
+		GLabel l = new GLabel("Brick Braker");
+		l.setFont("Times-40");
+		l.setColor(Color.green);
+		add(l, (getWidth() - l.getWidth()) / 2, (getHeight() - l.getAscent()) / 2);
+
+		GLabel l2 = new GLabel("Imron, Myung, Kristijan, Hossain, Tulina");
+		l2.setFont("Times-30");
+		l2.setColor(Color.green);
+		add(l2, (getWidth() - l2.getWidth()) / 2, l2.getAscent() + (getHeight() - l.getAscent()) / 2);
+
+		GLabel l1 = new GLabel("Instructions: Space-Start the ball, RIGHT-Bar moves right,");
+		l1.setFont("Times-20");
+		l1.setColor(Color.green);
+		add(l1, 0, getHeight() - 2 * l1.getHeight());
+
+		GLabel l15 = new GLabel("LEFT-Bar moves left,  CLICK to begin");
+		l15.setFont("Times-20");
+		l15.setColor(Color.green);
+		add(l15, 0, 540);
+		
+		waitForClick();
+		removeAll();
 
 	}
 
@@ -61,18 +176,16 @@ public class Game extends GraphicsProgram {
 			bar.moveLeft();
 			ball.moveRight();
 			break;
-		case KeyEvent.VK_SPACE:
-			 moveBall();
-			break;
 		}
 	}
 
 	private void moveBall() {
 		
-		if (oneTime) {
+		
 		Thread t1 = new Thread(ball);
 		t1.start();
-		oneTime=false; }
+
+//		isBalMov=true;
 		
 	}
 
@@ -80,6 +193,8 @@ public class Game extends GraphicsProgram {
 	private void addBall() {
 		ball = new Ball();
 		add(ball);
+		Thread t1 = new Thread(ball);
+		t1.start();
 	}
 
 	// method creates an object a bar
