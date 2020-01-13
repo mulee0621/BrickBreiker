@@ -9,6 +9,7 @@ public class Ball extends GOval implements Runnable{
 	private static double grossx =20;
 	private static double grossy = 20;
 	private static double PAUSE_TIME = 4;
+	private static double dx=2;
 	
 	//konstruktoren
 	public Ball() {
@@ -16,6 +17,18 @@ public class Ball extends GOval implements Runnable{
 		setFilled(true);
 		setColor(Color.GREEN);
 	}
+		//method moves ball to the right
+	public void moveRight() {
+		posx = posx + 2;
+		setLocation(posx,getY());
+	}
+
+	//method moves ball to the left
+	public void moveLeft() {
+		posx = posx - 2;
+		setLocation(posx,getY());
+	}
+	
 	
 	
 	//methoden die den Ball bewegen
@@ -24,10 +37,10 @@ public class Ball extends GOval implements Runnable{
 	 */
 	public void bewegung() {
 		boolean xfirst = true;
-		int xwert = 0;
-		int ywert = -1;
+		double xwert = 0;
+		double ywert = -1;
 		int i = 0;
-		int count = 0;
+		double platschl = 0;
 		for( ;!Game.GameOver; i++){
 			posy = getY() + ywert;
 			posx = getX() + xwert;
@@ -47,7 +60,14 @@ public class Ball extends GOval implements Runnable{
 				xwert = +2;
 			}
 			
-			if(getBounds().intersects(Game.bar.getBounds())) {					
+			if(getBounds().intersects(Game.bar.getBounds())) {	
+				platschl =  posx - Game.bar.getX();
+				if(platschl > 15 && platschl < 20 )
+					xwert = xwert + 2.2345;
+				if(platschl > 50 && platschl < 55 )
+					xwert = xwert + 2.1;
+				if(platschl > 80 && platschl < 85 )
+					xwert = xwert + 2.2345;
 				ywert = -1;
 			} else  
 				Game.GameOver = false;
@@ -55,9 +75,22 @@ public class Ball extends GOval implements Runnable{
 				break;
 			
 			for(int k = 0;k<Game.bricks.length; k++) {
+				if(Game.bricks[k].getX() == posx && Game.bricks[k].getY() == posy) {
+					xwert = -xwert;
+					
+				}
+				if(Game.bricks[k].getX() + Game.bricks[k].getWidth() == posx && Game.bricks[k].getY() == posy) {
+					xwert = -xwert;
+					
+				}
 				if(getBounds().intersects(Game.bricks[k].getBounds())) { 	
-					Game.bricks[k].setLocation(-100, -100);
+					if(Game.bricks[k].getX() == posx)
+						xwert = -xwert;
+					if(Game.bricks[k].getX() + Game.bricks[k].getWidth() == posx)
+						xwert = -xwert;
 					ywert = -ywert;
+					Game.bricks[k].setLocation(-100, -100);
+					
 					if( xfirst ) {
 						xfirst = false;
 						xwert = 2;
