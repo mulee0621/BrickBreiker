@@ -170,11 +170,9 @@ public class Game extends GraphicsProgram {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_RIGHT:
 			bar.moveRight();
-			ball.moveRight();
 			break;
 		case KeyEvent.VK_LEFT:
 			bar.moveLeft();
-			ball.moveRight();
 			break;
 		}
 	}
