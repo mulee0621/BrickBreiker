@@ -2,10 +2,10 @@ import java.awt.Color;
 import java.awt.Graphics;
 import acm.graphics.*;
 import acm.graphics.GOval;
-public class Ball extends GOval implements Runnable{
+public class Ball extends GImage implements Runnable{
 	//variablen für ball
 	private static double posx = 350;
-	private static double posy = 480;
+	private static double posy = 470;
 	private static double grossx =20;
 	private static double grossy = 20;
 	private static double PAUSE_TIME = 4;
@@ -13,10 +13,10 @@ public class Ball extends GOval implements Runnable{
 	
 	//konstruktoren
 	public Ball() {
-		super(posx , posy , grossx , grossy);
-		setFilled(true);
-		setColor(Color.GREEN);
-	}	
+		super("Kreitermithelmet.png");
+		setLocation(posx, posy);
+		scale(0.25);
+	}
 	//methoden die den Ball bewegen
 	/**
 	 * @
