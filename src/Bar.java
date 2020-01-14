@@ -7,15 +7,9 @@ public class Bar extends GRect {
 	private static double posY=500;
 	private static double width=100;
 	private static double height=8;
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 	private static double dx=20.5;
-=======
-	private static double dx=30;
->>>>>>> 64cc5f46ea1086d184d07950c4508db3ce6da120
-=======
-	private static double dx=20.5;
->>>>>>> fa04ab0c1c50c2a6420967a99559e2116ab2a7e0
+
 	
 	//this is constructor
 	public Bar() {

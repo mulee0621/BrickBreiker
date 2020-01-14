@@ -16,21 +16,7 @@ public class Ball extends GOval implements Runnable{
 		super(posx , posy , grossx , grossy);
 		setFilled(true);
 		setColor(Color.GREEN);
-	}
-		//method moves ball to the right
-	public void moveRight() {
-		posx = posx + 2;
-		setLocation(posx,getY());
-	}
-
-	//method moves ball to the left
-	public void moveLeft() {
-		posx = posx - 2;
-		setLocation(posx,getY());
-	}
-	
-	
-	
+	}	
 	//methoden die den Ball bewegen
 	/**
 	 * @
@@ -41,27 +27,27 @@ public class Ball extends GOval implements Runnable{
 		double ywert = -1;
 		int i = 0;
 		double platschl = 0;
-		for( ;!Game.GameOver; i++){
-			posy = getY() + ywert;
-			posx = getX() + xwert;
-			setLocation(posx,posy);
-			pause(PAUSE_TIME);
-			if(posy <= 3) {
-				ywert = 1;
-				if( xfirst ) {
-					xfirst = false;
-					xwert = 2;
+		for( ;!Game.GameOver; i++){							//Haupt schleife f�r ball bewegung
+			posy = getY() + ywert;							// POSITION Y (variable berechnung f�r berechnung von position)
+			posx = getX() + xwert;							// POSITION X (variable berechnung f�r berechnung von position)
+			setLocation(posx,posy);							// setze den ball auf die gegebenen koordinaten
+			pause(PAUSE_TIME);								// pause die die Geschwindigkeit von unser Ball reg�lt
+			if(posy <= 3) {									// if f�r kollision mit wand ganz oben
+				ywert = 1;									// geh nach unten dannach
+				if( xfirst ) {								// wert f�r nach unten
+					xfirst = false;							// erste kollision geht immer nach rechts
+					xwert = 2;								// wert f�r nach rechts
 				}
 			}
-			if(posx >= 661) {
-				xwert = -2;
+			if(posx >= 661) {								// if f�r kollision mit wand rechts
+				xwert = -2;									// wert f�r nach links
 			}
-			if(posx <= 3) {
-				xwert = +2;
+			if(posx <= 3) {									// if f�r kollision mit wand links
+				xwert = +2;									// wert f�r nach rechts
 			}
 			
-			if(getBounds().intersects(Game.bar.getBounds())) {	
-				platschl =  posx - Game.bar.getX();
+			if(getBounds().intersects(Game.bar.getBounds())) {		// if f�r kollision mit platform
+				platschl =  posx - Game.bar.getX();					// Beschtimmte werte f�r speziall abschiesen von den Ball
 				if(platschl > 15 && platschl < 20 )
 					xwert = xwert + 2.2345;
 				if(platschl > 50 && platschl < 55 )
@@ -69,33 +55,34 @@ public class Ball extends GOval implements Runnable{
 				if(platschl > 80 && platschl < 85 )
 					xwert = xwert + 2.2345;
 				ywert = -1;
-			} else  
-				Game.GameOver = false;
-			if(posy >= 600)
+			} 
+			if(posy >= 600) {								// if f�r unterfallen von den ball
+				Game.GameOver = true;
 				break;
+			}
 			
-<<<<<<< HEAD
-			for(int k = 3;k<Game.bricks.length; k++) {
-=======
-			for(int k = 0;k<Game.bricks.length; k++) {
-				if(Game.bricks[k].getX() == posx && Game.bricks[k].getY() == posy) {
-					xwert = -xwert;
+
+
+			for(int k = 0;k<Game.bricks.length; k++) {								// Haupt schleife f�r Kollision mit b�ocke
+				if(Game.bricks[k].getX() == posx && Game.bricks[k].getY() == posy) {	// if f�r kollision zwischen ball und block von die linke seite von den block
+					xwert = -xwert;														// was danach passieren soll
 					
 				}
-				if(Game.bricks[k].getX() + Game.bricks[k].getWidth() == posx && Game.bricks[k].getY() == posy) {
-					xwert = -xwert;
+				if(Game.bricks[k].getX() + Game.bricks[k].getWidth() == posx && Game.bricks[k].getY() == posy) {	// if f�r kollision zwischen ball und block von die rechte seite von den block
+					xwert = -xwert;														// was danach passieren soll
 					
 				}
->>>>>>> fa04ab0c1c50c2a6420967a99559e2116ab2a7e0
-				if(getBounds().intersects(Game.bricks[k].getBounds())) { 	
-					if(Game.bricks[k].getX() == posx)
+
+	
+				if(getBounds().intersects(Game.bricks[k].getBounds())) { 				// if f�r kollision zwischen ball und block mit BOUNDS
+					if(Game.bricks[k].getX() == posx)									// if f�r kollision zwischen ball und block von die linke seite von den block
 						xwert = -xwert;
-					if(Game.bricks[k].getX() + Game.bricks[k].getWidth() == posx)
+					if(Game.bricks[k].getX() + Game.bricks[k].getWidth() == posx)		// if f�r kollision zwischen ball und block von die rechte seite von den block
 						xwert = -xwert;
 					ywert = -ywert;
-					Game.bricks[k].setLocation(-100, -100);
+					Game.bricks[k].setLocation(-100, -100);								// die bl�cke auser von den screen setzen
 					
-					if( xfirst ) {
+					if( xfirst ) {														// erste kollision geht immer nach rechts
 						xfirst = false;
 						xwert = 2;
 					}
@@ -104,7 +91,7 @@ public class Ball extends GOval implements Runnable{
 			}
 			
 			System.out.println( "X:" + posx + ", Y:" + posy );
-			i = 0;
+			i = 0;													// i wird auf 0 gesetzt damit die schleife unendlich wird ohne dass risiko von einen int overflow
 		}
 
 	}
