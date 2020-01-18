@@ -59,10 +59,7 @@ public class Game extends GraphicsProgram {
 		addBar();
 		addBall();
 		addBrick();
-		//waitForClick();
 		addCounter();
-		
-		//moveBall();
 
 	}
 	private void addCounter() {
@@ -80,6 +77,9 @@ public class Game extends GraphicsProgram {
 
 		yourScoreL.setColor(Color.green);
 
+		//music stops when gameover
+		soundT.stop();
+		
 		// GameOver and Restart labels
 		GImage over = new GImage("GameOver.png");
 		over.scale(0.2);
@@ -101,7 +101,14 @@ public class Game extends GraphicsProgram {
 		GameOver = false;
 		yourScore = 0;
 		oneTime=true;
+		
+		//sound starts again after gameover
+		sound = new GameSound();
+		soundT=new Thread(sound);
+		soundT.start();
+		
 		run();
+		
 		
 		
 	}
@@ -178,12 +185,8 @@ public class Game extends GraphicsProgram {
 	}
 
 	private void moveBall() {
-		
-		
 		Thread t1 = new Thread(ball);
 		t1.start();
-
-//		isBalMov=true;
 		
 	}
 
