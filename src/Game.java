@@ -139,10 +139,35 @@ public class Game extends GraphicsProgram {
 	}
 
 	private void addHighScore() {
+		
+		readHighScore();
+		
 		highScoreL = new GLabel("High Score: " + highScore);
 		highScoreL.setFont("Arial-18");
 		highScoreL.setColor(Color.green);
 		add(highScoreL, 10, 530);
+		
+	}
+
+	private void readHighScore() {
+		try {
+			br = new BufferedReader(new FileReader("highScore.txt"));
+			highScoreString = br.readLine();
+			highScore = Integer.parseInt(highScoreString);
+
+		} catch (FileNotFoundException e) {
+			System.err.println("The file you specified does not exist.");
+		} catch (IOException e) {
+			System.err.println("Some other IO exception occured. Message: " + e.getMessage());
+		} finally {
+			try {
+				if (br != null)
+					br.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
 		
 	}
 
