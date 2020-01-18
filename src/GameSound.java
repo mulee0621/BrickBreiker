@@ -15,7 +15,6 @@ public class GameSound implements Runnable {
 
 			FileInputStream fis = new FileInputStream("gameSound.mp3");
 			Player playMP3 = new Player(fis);
-
 			playMP3.play();
 
 		} catch (Exception e) {

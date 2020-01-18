@@ -103,15 +103,14 @@ public class Game extends GraphicsProgram {
 		oneTime=true;
 		
 		//sound starts again after gameover
-		sound = new GameSound();
-		soundT=new Thread(sound);
-		soundT.start();
+		addSound();
 		
 		run();
 		
 		
 		
 	}
+
 
 	private void writeNewHighScore() {
 		try {
@@ -129,6 +128,9 @@ public class Game extends GraphicsProgram {
 		add(yourScoreL, 680-yourScoreL.getWidth(), 530);
 		yourScore++;
 		pause(100);
+		
+		//music repeats after 1000 points
+		if(yourScore%1000==0)  { soundT.stop(); addSound();}
 	}
 
 	private void initialiseScore() {
