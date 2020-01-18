@@ -55,11 +55,14 @@ public class Game extends GraphicsProgram {
 
 	@Override
 	public void run() {
+		
 		addWall();
 		addBar();
 		addBall();
 		addBrick();
 		addCounter();
+		
+		
 
 	}
 	private void addCounter() {
@@ -174,7 +177,7 @@ public class Game extends GraphicsProgram {
 	}
 
 	private void welcome() {
-		setBackground(Color.BLACK);
+		setBackground(Color.black);
 		GLabel l = new GLabel("Brick Braker");
 		l.setFont("Times-40");
 		l.setColor(Color.green);
@@ -203,10 +206,10 @@ public class Game extends GraphicsProgram {
 	public void keyPressed(KeyEvent e) {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_RIGHT:
-			bar.moveRight();
+			if(!GameOver) bar.moveRight();
 			break;
 		case KeyEvent.VK_LEFT:
-			bar.moveLeft();
+			if(!GameOver) bar.moveLeft();
 			break;
 		}
 	}
