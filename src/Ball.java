@@ -10,6 +10,10 @@ public class Ball extends GImage implements Runnable {
 	private static double PAUSE_TIME = 10;
 	protected static double dx = 0;
 	protected static double dy = -3;
+	 boolean isBarTouched=true;
+	 protected static boolean bob=true;
+	
+	
 
 	// konstruktor
 	public Ball() {
@@ -35,16 +39,18 @@ public class Ball extends GImage implements Runnable {
 
 			// collision with bar
 			if (Game.ball.getY() + 5 < Game.bar.getY() && Game.ball.getBounds().intersects(Game.bar.getBounds())) {
+				bob=false;
+				
 				dx = 0;
-				double xBall = Game.ball.getX() + 15;
-				double xBar = Game.bar.getX();
+				
+				
 
 				// right side of bar
-				if (xBall > xBar + 65) {
+				if (Game.ball.getX() + 15 > Game.bar.getX() + 60) {
 					dy = -dy;
 					dx += 1.5;
 					// middle side of bar
-				} else if (xBall > xBar + 25)
+				} else if (Game.ball.getX() + 15 > Game.bar.getX() + 40)
 					dy = -dy;
 				// left side of bar
 				else {
@@ -53,7 +59,7 @@ public class Ball extends GImage implements Runnable {
 				}
 
 			}
-
+			bob=true;	
 			// collision with wall
 			if (getX() >= 661 || getX() <= 3)
 				dx = -dx;
@@ -62,23 +68,25 @@ public class Ball extends GImage implements Runnable {
 			for (int i = 0; i < 6; i++) {
 				for (int j = 0; j < 11; j++) {
 					if (Game.ball.getBounds().intersects(Game.bricks[i][j].getBounds())) {
+						
+						
 						dx = 0;
 						double xBall = Game.ball.getX() + 15;
 						double xBrick = Game.bricks[i][j].getX();
 
 						// right side of brick
-						if (xBall > xBrick + 35) {
+						if (xBall > xBrick + 30) {
 							dy = -dy;
-							dx -= 0.5;
+							dx += 0.5;
 
 							// middle side of brick
-						} else if (xBall > xBrick + 15)
+						} else if (xBall > xBrick + 10)
 							dy = -dy;
 
 						// left side of brick
 						else {
 							dy = -dy;
-							dx += 0.5;
+							dx -= 0.5;
 						}
 						Game.bricks[i][j].setLocation(-100, -100);
 					}
@@ -86,7 +94,7 @@ public class Ball extends GImage implements Runnable {
 			}
 
 			// gameover
-			if (getY() >= Game.bar.getY()) {
+			if (getY() >= 600) {
 				Game.GameOver = true;
 				break;
 			}

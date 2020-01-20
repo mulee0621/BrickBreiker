@@ -206,10 +206,10 @@ public class Game extends GraphicsProgram {
 	public void keyPressed(KeyEvent e) {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_RIGHT:
-			if(!GameOver) bar.moveRight();
+			if(!GameOver && Ball.bob) bar.moveRight();
 			break;
 		case KeyEvent.VK_LEFT:
-			if(!GameOver) bar.moveLeft();
+			if(!GameOver && Ball.bob) bar.moveLeft();
 			break;
 		}
 	}
