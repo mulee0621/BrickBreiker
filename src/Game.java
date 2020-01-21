@@ -215,61 +215,49 @@ public class Game extends GraphicsProgram {
 		int y = 15;
 		for (int i = 0; i < bricks.length; i++) {
 			while(i<=10) {
-				bricks[i]=new Brick(x,y,Color.yellow);
+				bricks[i]=new Brick(x,y,Color.red);
 				add(bricks[i]);
 				x += 60;
 				i++;
 			} x = 15;
 			while(i>10 && i<=21) {
 				y = 55;
-				bricks[i]=new Brick(x,y,Color.red);
+				bricks[i]=new Brick(x,y,Color.orange);
 				add(bricks[i]);
 				x += 60;
 				i++;
 			} x = 15;
 			while(i>21 && i<=32) {
 				y = 95;
-				bricks[i]=new Brick(x,y,Color.blue);
+				bricks[i]=new Brick(x,y,Color.yellow);
 				add(bricks[i]);
 				x += 60;
 				i++;
 			} x = 15;
 			while(i>32 && i<=43) {
 				y = 135;
-				bricks[i]=new Brick(x,y,Color.yellow);
+				bricks[i]=new Brick(x,y,Color.green);
 				add(bricks[i]);
 				x += 60;
 				i++;
 			} x = 15;
 			while(i>43 && i<=54) {
 				y = 175;
-				bricks[i]=new Brick(x,y,Color.red);
+				bricks[i]=new Brick(x,y,Color.blue);
 				add(bricks[i]);
 				x += 60;
 				i++;
 			} x = 15;
 			while(i>54 && i<=65) {
 				y = 215;
-				bricks[i]=new Brick(x,y,Color.blue);
+				bricks[i]=new Brick(x,y,Color.magenta);
 				add(bricks[i]);
 				x += 60;
 				i++;
 			}
-					/* 
-					if(k == 1) bricks[i]=new Brick(x,y,Color.green);
-					if(k == 3) bricks[i]=new Brick(x,y,Color.blue);
-					if(k == 5) bricks[i]=new Brick(x,y,Color.magenta);
-				
-					if(i == 1) bricks[i]=new Brick(x,y,Color.cyan);
-					if(i == 4) bricks[i]=new Brick(x,y,Color.red);
-					if(i == 7) bricks[i]=new Brick(x,y,Color.orange);
-					if(i == 10) bricks[i]=new Brick(x,y,Color.pink);
-					 */
-				
-				
-		
 		}
 	}
+
 
 
 	public static void main(String[] args) {
