@@ -86,8 +86,13 @@ public class Game extends GraphicsProgram {
 		// GameOver and Restart labels
 		GImage over = new GImage("GameOver.png");
 		over.scale(0.2);
-		add(over, (getWidth() - over.getWidth()) / 2, getHeight() / 2 - over.getHeight());
+		add(over, (getWidth() - over.getWidth()) / 2, (getHeight() - over.getHeight())/2);
 	
+		GLabel newGame = new GLabel("CLICK - NEW game!");
+		newGame.setFont("Times-20");
+		newGame.setColor(Color.white);
+		add(newGame, getWidth()/2 , getHeight()*4/5 );
+		
 		// high score
 		if (highScore < yourScore) {
 			highScore = yourScore;
@@ -178,25 +183,25 @@ public class Game extends GraphicsProgram {
 
 	private void welcome() {
 		setBackground(Color.black);
-		GLabel l = new GLabel("Brick Braker");
-		l.setFont("Times-40");
-		l.setColor(Color.green);
-		add(l, (getWidth() - l.getWidth()) / 2, (getHeight() - l.getAscent()) / 2);
+		
+		GImage logo = new GImage("logo.png");
+		logo.scale(0.3);
+		add(logo, (getWidth() - logo.getWidth()) / 2, (getHeight() - logo.getHeight())*3/5);
+	
+		GLabel l2 = new GLabel("GeekBash : Imron, Myung, Kristijan, Hossain, Tulina");
+		l2.setFont("Times-20");
+		l2.setColor(Color.white);
+		add(l2, (getWidth() - l2.getWidth()) / 2, (getHeight() - logo.getHeight())*2/5);
 
-		GLabel l2 = new GLabel("Imron, Myung, Kristijan, Hossain, Tulina");
-		l2.setFont("Times-30");
-		l2.setColor(Color.green);
-		add(l2, (getWidth() - l2.getWidth()) / 2, l2.getAscent() + (getHeight() - l.getAscent()) / 2);
-
-		GLabel l1 = new GLabel("Instructions: Space-Start the ball, RIGHT-Bar moves right,");
+		GLabel l1 = new GLabel("Instructions: CLICK - To begin , SPACE - To start the ball");
 		l1.setFont("Times-20");
 		l1.setColor(Color.green);
-		add(l1, 0, getHeight() - 2 * l1.getHeight());
+		add(l1,80, getHeight() - 2 * l1.getHeight());
 
-		GLabel l15 = new GLabel("LEFT-Bar moves left,  CLICK to begin");
+		GLabel l15 = new GLabel("LEFT - To move Bar left, RIGHT - To moves Bar right");
 		l15.setFont("Times-20");
 		l15.setColor(Color.green);
-		add(l15, 0, 540);
+		add(l15,140, 540);
 		
 		waitForClick();
 		removeAll();
