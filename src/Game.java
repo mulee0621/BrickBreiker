@@ -138,10 +138,10 @@ public class Game extends GraphicsProgram {
 
 	private void countScore() {
 		yourScoreL.setLabel("TIME: " + yourScore);
-		add(yourScoreL, 680-yourScoreL.getWidth(), 530);
+		add(yourScoreL, 700/2-yourScoreL.getWidth()/2, 530);
 		
 		yourScoreB.setLabel("BRICKS SCORE: " + Ball.bricksScore);
-		add(yourScoreB, 680-yourScoreB.getWidth(), 510);
+		add(yourScoreB, 680-yourScoreB.getWidth(), 530);
 		yourScore++;
 		pause(100);
 		
