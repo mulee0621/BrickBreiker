@@ -10,7 +10,6 @@ public class Ball extends GImage implements Runnable {
 	private static double grossx = 20;
 	private static double grossy = 20;
 	private static double PAUSE_TIME = 4;
-	private static double dx = 2;
 	static int bricksOutside;
 	static int bricksScore;
 
@@ -31,27 +30,27 @@ public class Ball extends GImage implements Runnable {
 		double ywert = -1;
 		int i = 0;
 		double platschl = 0;
-		for (; !Game.GameOver; i++) { // Haupt schleife für ball bewegung
-			posy = getY() + ywert; // POSITION Y (variable berechnung für berechnung von position)
-			posx = getX() + xwert; // POSITION X (variable berechnung für berechnung von position)
-			setLocation(posx, posy); // setze den ball auf die gegebenen koordinaten
-			pause(PAUSE_TIME); // pause die die Geschwindigkeit von unser Ball regält
-			if (posy <= 3) { // if für kollision mit wand ganz oben
-				ywert = 1; // geh nach unten dannach
-				if (xfirst) { // wert für nach unten
-					xfirst = false; // erste kollision geht immer nach rechts
-					xwert = 2; // wert für nach rechts
+		for (; !Game.GameOver; i++) { 														// Haupt schleife für ball bewegung
+			posy = getY() + ywert; 															// POSITION Y (variable berechnung für berechnung von position)
+			posx = getX() + xwert; 															// POSITION X (variable berechnung für berechnung von position)
+			setLocation(posx, posy); 														// setze den ball auf die gegebenen koordinaten
+			pause(PAUSE_TIME); 																// pause die die Geschwindigkeit von unser Ball regält
+			if (posy <= 3) { 																// if für kollision mit wand ganz oben
+				ywert = 1; 																	// geh nach unten dannach
+				if (xfirst) { 																// wert für nach unten
+					xfirst = false; 														// erste kollision geht immer nach rechts
+					xwert = 2;																// wert für nach rechts
 				}
 			}
-			if (posx >= 661) { // if für kollision mit wand rechts
-				xwert = -2; // wert für nach links
+			if (posx >= 661) { 																// if für kollision mit wand rechts
+				xwert = -2; 																// wert für nach links
 			}
-			if (posx <= 3) { // if für kollision mit wand links
-				xwert = +2; // wert für nach rechts
+			if (posx <= 3) { 																// if für kollision mit wand links
+				xwert = +2; 																// wert für nach rechts
 			}
 
-			if (getBounds().intersects(Game.bar.getBounds())) { // if für kollision mit platform
-				platschl = posx - Game.bar.getX(); // Beschtimmte werte für speziall abschiesen von den Ball
+			if (getBounds().intersects(Game.bar.getBounds())) { 							// if für kollision mit platform
+				platschl = posx - Game.bar.getX();											// Beschtimmte werte für speziall abschiesen von den Ball
 				if (platschl > 15 && platschl < 20)
 					xwert = xwert + 2.2345;
 				if (platschl > 50 && platschl < 55)
@@ -60,7 +59,7 @@ public class Ball extends GImage implements Runnable {
 					xwert = xwert + 2.2345;
 				ywert = -1;
 			}
-			if (posy >= 600) { // if für unterfallen von den ball
+			if (posy >= 600) { 																// if für unterfallen von den ball
 				Game.GameOver = true;
 				break;
 			}
@@ -68,26 +67,26 @@ public class Ball extends GImage implements Runnable {
 				for (int j = 0; j < 11; j++) {
 					if (Game.ball.getBounds().intersects(Game.bricks[k][j].getBounds())) { // Haupt schleife für
 																							// Kollision mit böocke
-						ywert = -ywert;
-						Game.bricks[k][j].setLocation(-100, -100);
-						bricksOutside++;
-						bricksScore++;
+						ywert = -ywert;														// geh nach untetn
+						Game.bricks[k][j].setLocation(-100, -100);							// verschiebe die Blöcke auf diese koordinaen
+						bricksOutside++;													// zaehler feur vie fiele bloecke waren getroffen
+						bricksScore++;														// zaehler feur vie fiele bloecke waren getroffen
 						if (bricksOutside == 66) {
 							
-							generateNewBricks();}
-						if (xfirst) { // erste kollision geht immer nach rechts
+							generateNewBricks();}											//aufruff von der methode
+						if (xfirst) { 														// erste kollision geht immer nach rechts
 							xfirst = false;
 							xwert = 2;
 						}
-						break;
+						break;																//schleife abbruch
 					}
 				}
 
 			}
 
 			System.out.println("X:" + posx + ", Y:" + posy);
-			i = 0; // i wird auf 0 gesetzt damit die schleife unendlich wird ohne dass risiko von
-					// einen int overflow
+			i = 0; 																			// i wird auf 0 gesetzt damit die schleife unendlich wird ohne dass risiko von
+																							// einen int overflow
 		}
 
 	}
