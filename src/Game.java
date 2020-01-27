@@ -25,14 +25,17 @@ public class Game extends GraphicsProgram {
 	private GameSound sound;
 	private Thread soundT;
 	protected static boolean oneTime=true;
-	protected static Brick [] bricks ; 
+	protected static Brick [][] bricks ; 
 	
 	// score stuff
 		private int highScore;
 		private GLabel highScoreL;
 		private String highScoreString;
 		private int yourScore;
+		
 		private GLabel yourScoreL;
+		private GLabel yourScoreB;
+		
 		private BufferedReader br = null;
 		PrintWriter pw;
 
@@ -94,8 +97,8 @@ public class Game extends GraphicsProgram {
 		add(newGame, getWidth()/2 , getHeight()*4/5 );
 		
 		// high score
-		if (highScore < yourScore) {
-			highScore = yourScore;
+		if (highScore < Ball.bricksScore) {
+			highScore = Ball.bricksScore;
 			writeNewHighScore();
 		}
 
@@ -109,6 +112,8 @@ public class Game extends GraphicsProgram {
 		GameOver = false;
 		yourScore = 0;
 		oneTime=true;
+		Ball.bricksOutside=0;
+		Ball.bricksScore=0;
 		
 		//sound starts again after gameover
 		addSound();
@@ -132,8 +137,11 @@ public class Game extends GraphicsProgram {
 	}
 
 	private void countScore() {
-		yourScoreL.setLabel("YOUR SCORE: " + yourScore);
+		yourScoreL.setLabel("TIME: " + yourScore);
 		add(yourScoreL, 680-yourScoreL.getWidth(), 530);
+		
+		yourScoreB.setLabel("BRICKS SCORE: " + Ball.bricksScore);
+		add(yourScoreB, 680-yourScoreB.getWidth(), 510);
 		yourScore++;
 		pause(100);
 		
@@ -142,9 +150,13 @@ public class Game extends GraphicsProgram {
 	}
 
 	private void initialiseScore() {
-		yourScoreL = new GLabel("CURRENT SCORE: " + yourScore);
+		yourScoreL = new GLabel("TIME: " + yourScore);
 		yourScoreL.setFont("Arial-18");
 		yourScoreL.setColor(Color.green);
+		
+		yourScoreB = new GLabel("BRICKS: " + Ball.bricksScore);
+		yourScoreB.setFont("Arial-18");
+		yourScoreB.setColor(Color.green);
 		
 	}
 
@@ -245,56 +257,24 @@ public class Game extends GraphicsProgram {
 		add(wall);
 		
 	}
-	
-	// method creates an object a bricks
 	private void addBrick() {
-		bricks = new Brick[66];
-		int x = 15;
-		int y = 15;
-		for (int i = 0; i < bricks.length; i++) {
-			while(i<=10) {
-				bricks[i]=new Brick(x,y,Color.red);
-				add(bricks[i]);
+		bricks = new Brick[6][11];
+		Color color[] = {Color.red,Color.orange, Color.yellow, Color.green, Color.blue, Color.magenta};
+		int x = 18;
+		int y = 18;
+		
+		for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 11; j++) {
+            	bricks[i][j]=new Brick(x,y,color[i]);
+				add(bricks[i][j]);
 				x += 60;
-				i++;
-			} x = 15;
-			while(i>10 && i<=21) {
-				y = 55;
-				bricks[i]=new Brick(x,y,Color.orange);
-				add(bricks[i]);
-				x += 60;
-				i++;
-			} x = 15;
-			while(i>21 && i<=32) {
-				y = 95;
-				bricks[i]=new Brick(x,y,Color.yellow);
-				add(bricks[i]);
-				x += 60;
-				i++;
-			} x = 15;
-			while(i>32 && i<=43) {
-				y = 135;
-				bricks[i]=new Brick(x,y,Color.green);
-				add(bricks[i]);
-				x += 60;
-				i++;
-			} x = 15;
-			while(i>43 && i<=54) {
-				y = 175;
-				bricks[i]=new Brick(x,y,Color.blue);
-				add(bricks[i]);
-				x += 60;
-				i++;
-			} x = 15;
-			while(i>54 && i<=65) {
-				y = 215;
-				bricks[i]=new Brick(x,y,Color.magenta);
-				add(bricks[i]);
-				x += 60;
-				i++;
-			}
-		}
+            }
+            y+=40;
+            x = 18;
+           }
 	}
+	
+	
 
 	public static void main(String[] args) {
 		new Game().start();
