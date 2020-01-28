@@ -1,6 +1,5 @@
 import java.awt.Color;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -9,39 +8,44 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import acm.graphics.*;
 import acm.program.*;
-import acm.util.RandomGenerator;
-
-import java.util.Random;
 
 public class Game extends GraphicsProgram {
 	private static final long serialVersionUID = 1L;
-	public static final int WINDOW_WIDTH=700;
-	public static final int WINDOW_HEIGHT=600;
-	protected static boolean GameOver = false;
+
+	public static final int WINDOW_WIDTH = 700;
+	public static final int WINDOW_HEIGHT = 600;
+
+	protected static boolean GameOver;
+
 	protected static Bar bar;
+
 	protected static Wall wall;
+
 	protected static Ball ball;
-	private boolean isBalMov=false;
+
+	// sound attributes
 	private GameSound sound;
 	private Thread soundT;
-	protected static boolean oneTime=true;
-	protected static Brick [][] bricks ; 
-	
-	// score stuff
-		private int highScore;
-		private GLabel highScoreL;
-		private String highScoreString;
-		private int yourScore;
-		
-		private GLabel yourScoreL;
-		private GLabel yourScoreB;
-		
-		private BufferedReader br = null;
-		PrintWriter pw;
 
-	
+	protected static Brick[][] bricks;
 
-	// background and size of screen
+	// score attributes
+	private int highScore;
+	private GLabel highScoreL;
+	private String highScoreString;
+
+	// score counter by n of bricks
+	private GLabel yourScoreB;
+
+	// time attributes
+	private int gameTime;
+	private GLabel gameTimeLable;
+
+	// file reader and writer
+	private BufferedReader br = null;
+	PrintWriter pw;
+
+	// initializes screen
 	@Override
 	public void init() {
 		addSound();
@@ -50,53 +54,121 @@ public class Game extends GraphicsProgram {
 		welcome();
 	}
 
-	private void addSound() {
-		sound = new GameSound();
-		soundT=new Thread(sound);
-		soundT.start();
-	} 
-
+	// main body of the game, used each time after game over
 	@Override
 	public void run() {
-		
 		addWall();
 		addBar();
 		addBall();
 		addBrick();
 		addCounter();
-		
-		
+	}
+
+	// enables sound
+	private void addSound() {
+		sound = new GameSound();
+		soundT = new Thread(sound);
+		soundT.start();
+	}
+
+	// welcome screen of the game
+	private void welcome() {
+		setBackground(Color.black);
+
+		// logo on the screen
+		GImage logo = new GImage("logo.png");
+		logo.scale(0.3);
+		add(logo, (getWidth() - logo.getWidth()) / 2, (getHeight() - logo.getHeight()) * 3 / 5);
+
+		// developers list on the screen
+		GLabel devListLable = new GLabel("GeekBash : Imron, Myung, Kristijan, Hossain, Tulina");
+		devListLable.setFont("Times-20");
+		devListLable.setColor(Color.white);
+		add(devListLable, (getWidth() - devListLable.getWidth()) / 2, (getHeight() - logo.getHeight()) * 2 / 5);
+
+		// instructions
+		GLabel instLable1 = new GLabel("Instructions: CLICK - To begin , SPACE - To start the ball");
+		instLable1.setFont("Times-20");
+		instLable1.setColor(Color.green);
+		add(instLable1, 80, getHeight() - 2 * instLable1.getHeight());
+		GLabel instLable2 = new GLabel("LEFT - To move Bar left, RIGHT - To moves Bar right");
+		instLable2.setFont("Times-20");
+		instLable2.setColor(Color.green);
+		add(instLable2, 140, 540);
+
+		waitForClick();
+		removeAll();
 
 	}
+
+	// method adds wall to the screen
+	private void addWall() {
+		wall = new Wall();
+		add(wall);
+	}
+
+	// method adds Bar to the screen
+	private void addBar() {
+		bar = new Bar();
+		add(bar);
+	}
+
+	// method creates an object a ball and initializes the thread
+	private void addBall() {
+		ball = new Ball();
+		add(ball);
+		Thread t1 = new Thread(ball);
+		t1.start();
+	}
+
+	// method adds 5 rows of bricks to the screen
+	private void addBrick() {
+		bricks = new Brick[6][11];
+		Color color[] = { Color.red, Color.orange, Color.yellow, Color.green, Color.blue };
+		int x = 18;
+		int y = 18;
+
+		for (int i = 0; i < 5; i++) {
+			for (int j = 0; j < 11; j++) {
+				bricks[i][j] = new Brick(x, y, color[i]);
+				add(bricks[i][j]);
+				x += 60;
+			}
+			y += 40;
+			x = 18;
+		}
+	}
+
+	/**
+	 * This method counts the time and score this method also contains main loop of
+	 * game.
+	 */
 	private void addCounter() {
 		addHighScore();
 		initialiseScore();
-
-		while (!GameOver) 
+		while (!GameOver)
 			countScore();
+		GameOver();
 
-		 GameOver();
-		
 	}
 
+	// this method is used when it is game over
 	private void GameOver() {
 
-		yourScoreL.setColor(Color.green);
-
-		//music stops when gameover
+		// music stops when gameover
 		soundT.stop();
-		
+
 		// GameOver and Restart labels
 		GImage over = new GImage("GameOver.png");
 		over.scale(0.2);
-		add(over, (getWidth() - over.getWidth()) / 2, (getHeight() - over.getHeight())/2);
-	
+		add(over, (getWidth() - over.getWidth()) / 2, (getHeight() - over.getHeight()) / 2);
+
 		GLabel newGame = new GLabel("CLICK - NEW game!");
 		newGame.setFont("Times-20");
 		newGame.setColor(Color.white);
-		add(newGame, getWidth()/2 , getHeight()*4/5 );
-		
-		// high score
+		add(newGame, getWidth() / 2, getHeight() * 4 / 5);
+
+		// saving high score
 		if (highScore < Ball.bricksScore) {
 			highScore = Ball.bricksScore;
 			writeNewHighScore();
@@ -105,26 +177,22 @@ public class Game extends GraphicsProgram {
 		waitForClick();
 		removeAll();
 		beginNewGame();
-		
+
 	}
 
+	// this method starts new new game after game over
 	private void beginNewGame() {
 		GameOver = false;
-		yourScore = 0;
-		oneTime=true;
-		Ball.bricksOutside=0;
-		Ball.bricksScore=0;
-		
-		//sound starts again after gameover
+		gameTime = 0;
+		Ball.bricksOutside = 0;
+		Ball.bricksScore = 0;
+
 		addSound();
-		
 		run();
-		
-		
-		
+
 	}
 
-
+	// this method writes high score to the file
 	private void writeNewHighScore() {
 		try {
 			pw = new PrintWriter(new FileWriter("highScore.txt"), false);
@@ -133,44 +201,51 @@ public class Game extends GraphicsProgram {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
+	// this mehtod counts the time and score
 	private void countScore() {
-		yourScoreL.setLabel("TIME: " + yourScore);
-		add(yourScoreL, 700/2-yourScoreL.getWidth()/2, 530);
-		
+		// time
+		gameTimeLable.setLabel("TIME: " + gameTime);
+		add(gameTimeLable, 700 / 2 - gameTimeLable.getWidth() / 2, 530);
+
+		// bricks score
 		yourScoreB.setLabel("BRICKS SCORE: " + Ball.bricksScore);
-		add(yourScoreB, 680-yourScoreB.getWidth(), 530);
-		yourScore++;
+		add(yourScoreB, 680 - yourScoreB.getWidth(), 530);
+		gameTime++;
 		pause(100);
-		
-		//music repeats after 1000 points
-		if(yourScore%1000==0)  { soundT.stop(); addSound();}
+
+		// music repeats after 1000 points
+		if (gameTime % 1000 == 0) {
+			soundT.stop();
+			addSound();
+		}
 	}
 
+	// this method creates time and score label and adds to the screen
 	private void initialiseScore() {
-		yourScoreL = new GLabel("TIME: " + yourScore);
-		yourScoreL.setFont("Arial-18");
-		yourScoreL.setColor(Color.green);
-		
+		gameTimeLable = new GLabel("TIME: " + gameTime);
+		gameTimeLable.setFont("Arial-18");
+		gameTimeLable.setColor(Color.green);
+
 		yourScoreB = new GLabel("BRICKS: " + Ball.bricksScore);
 		yourScoreB.setFont("Arial-18");
 		yourScoreB.setColor(Color.green);
-		
+
 	}
 
+	// this method reads high score from file and adds high score label to the
+	// screen
 	private void addHighScore() {
-		
 		readHighScore();
-		
 		highScoreL = new GLabel("High Score: " + highScore);
 		highScoreL.setFont("Arial-18");
 		highScoreL.setColor(Color.green);
 		add(highScoreL, 10, 530);
-		
 	}
 
+	// this method reads high score from file
 	private void readHighScore() {
 		try {
 			br = new BufferedReader(new FileReader("highScore.txt"));
@@ -190,91 +265,22 @@ public class Game extends GraphicsProgram {
 			}
 		}
 
-		
 	}
 
-	private void welcome() {
-		setBackground(Color.black);
-		
-		GImage logo = new GImage("logo.png");
-		logo.scale(0.3);
-		add(logo, (getWidth() - logo.getWidth()) / 2, (getHeight() - logo.getHeight())*3/5);
-	
-		GLabel l2 = new GLabel("GeekBash : Imron, Myung, Kristijan, Hossain, Tulina");
-		l2.setFont("Times-20");
-		l2.setColor(Color.white);
-		add(l2, (getWidth() - l2.getWidth()) / 2, (getHeight() - logo.getHeight())*2/5);
-
-		GLabel l1 = new GLabel("Instructions: CLICK - To begin , SPACE - To start the ball");
-		l1.setFont("Times-20");
-		l1.setColor(Color.green);
-		add(l1,80, getHeight() - 2 * l1.getHeight());
-
-		GLabel l15 = new GLabel("LEFT - To move Bar left, RIGHT - To moves Bar right");
-		l15.setFont("Times-20");
-		l15.setColor(Color.green);
-		add(l15,140, 540);
-		
-		waitForClick();
-		removeAll();
-
-	}
-
+	// this method makes bar to move to the right or to the left depending on which
+	// key is pressed
 	public void keyPressed(KeyEvent e) {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_RIGHT:
-			if(!GameOver) bar.moveRight();
+			if (!GameOver)
+				bar.moveRight();
 			break;
 		case KeyEvent.VK_LEFT:
-			if(!GameOver) bar.moveLeft();
+			if (!GameOver)
+				bar.moveLeft();
 			break;
 		}
 	}
-
-	private void moveBall() {
-		Thread t1 = new Thread(ball);
-		t1.start();
-		
-	}
-
-	// method creates an object a ball
-	private void addBall() {
-		ball = new Ball();
-		add(ball);
-		Thread t1 = new Thread(ball);
-		t1.start();
-	}
-
-	// method creates an object a bar
-	private void addBar() {
-		bar = new Bar();
-		add(bar);
-	}
-
-	// method creates an object a wall
-	private void addWall() {
-		wall = new Wall();
-		add(wall);
-		
-	}
-	private void addBrick() {
-		bricks = new Brick[6][11];
-		Color color[] = {Color.red,Color.orange, Color.yellow, Color.green, Color.blue, Color.magenta};
-		int x = 18;
-		int y = 18;
-		
-		for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 11; j++) {
-            	bricks[i][j]=new Brick(x,y,color[i]);
-				add(bricks[i][j]);
-				x += 60;
-            }
-            y+=40;
-            x = 18;
-           }
-	}
-	
-	
 
 	public static void main(String[] args) {
 		new Game().start();
