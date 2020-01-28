@@ -263,7 +263,7 @@ public class Game extends GraphicsProgram {
 		int x = 18;
 		int y = 18;
 		
-		for (int i = 0; i < 6; i++) {
+		for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 11; j++) {
             	bricks[i][j]=new Brick(x,y,color[i]);
 				add(bricks[i][j]);

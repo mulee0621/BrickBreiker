@@ -63,7 +63,7 @@ public class Ball extends GImage implements Runnable {
 				Game.GameOver = true;
 				break;
 			}
-			for (int k = 0; k < 6; k++) {
+			for (int k = 0; k < 4; k++) {
 				for (int j = 0; j < 11; j++) {
 					if (Game.ball.getBounds().intersects(Game.bricks[k][j].getBounds())) { // Haupt schleife für
 																							// Kollision mit böocke
@@ -71,7 +71,7 @@ public class Ball extends GImage implements Runnable {
 						Game.bricks[k][j].setLocation(-100, -100);							// verschiebe die Blöcke auf diese koordinaen
 						bricksOutside++;													// zaehler feur vie fiele bloecke waren getroffen
 						bricksScore++;														// zaehler feur vie fiele bloecke waren getroffen
-						if (bricksOutside == 66) {
+						if (bricksOutside == 44) {
 							
 							generateNewBricks();}											//aufruff von der methode
 						if (xfirst) { 														// erste kollision geht immer nach rechts
