@@ -1,9 +1,20 @@
 
 import acm.graphics.*;
-
+/**
+ * Diese Klasse ist dafür zuständig, dass die der Ball erstellt, bewegt und nach eine gewisse Zeit die Blöcke wieder erstellen  
+ * @author Kiko
+ *
+ */
 
 public class Ball extends GImage implements Runnable {
 	// variablen für ball
+	/**
+	 * @variable posx diese Variable ist genutzt für die bewegung auf die x Achse
+	 * @variable posy diese Variable ist genutzt für die bewegung auf die y Achse
+	 * @variable PAUSE_TIME Variable ist genutz für die Geschwindigkeit der Ball
+	 * @variable bricksOutside Variable ist genutzt für die Erstellung von Blöcke
+	 * @variable bricksScore Variable ist genutzt für die Aufzahlung von der Punktzahl
+	 */
 	private static double posx = 350;
 	private static double posy = 470;
 	private static double PAUSE_TIME = 4;
@@ -11,6 +22,9 @@ public class Ball extends GImage implements Runnable {
 	static int bricksScore;
 
 	// konstruktoren
+	/**
+	 * 
+	 */
 	public Ball() {
 		super("Kreitermithelmet.png");
 		setLocation(posx, posy);
@@ -19,7 +33,13 @@ public class Ball extends GImage implements Runnable {
 
 	// methoden die den Ball bewegen
 	/**
-	 * @
+	 * Diese Methode ist Zuständig für die Bewegung von der Ball und di kollision von der Ball mit der Wand, Platform und Blöcke
+	 * @variable xfirst diese Variable ist genutzt um der erste Kollision von der Ball nach rechts zu schieben
+	 * @variable xwert diese Variable ist Zuständig für die Verschiebung von der Ball
+	 * @variable ywert diese Variable ist Zuständig für die Verschiebung von der Ball
+	 * @variable i diese Variable ist dafür Zustandig damit die for schleife sich Unendlich wiederhollt
+	 * @variable platschl diese Variable kurz für (platform schlag) gibt drei fälle wo der Ball sich einbischen anders bewegt
+	 * 
 	 */
 	public void bewegung() {
 		boolean xfirst = true;
@@ -87,7 +107,9 @@ public class Ball extends GImage implements Runnable {
 		}
 
 	}
-
+	/**
+	 * Diese Methode ist dafür Zuständig um die Blöcke wieder zu erstellen 
+	 */
 	private void generateNewBricks() {
 		int x = 18;
 		int y = 18;
