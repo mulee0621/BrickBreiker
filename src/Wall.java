@@ -13,9 +13,23 @@ import acm.program.*;
 import acm.util.RandomGenerator;
 
 
-public  class Wall extends GPen {
 
+
+/*
+ * Dieser Klass behandelt sich der Wand des Spiels 
+ * 
+ * 
+ * @author Hussain
+ */
+public  class Wall extends GPen {
 	
+	/**
+	 * 
+	 * @param - 1,600 -  x und y koordinate 
+	 * @param - 0,-599.5  - x und y Position von der Wand
+	 * @param - 683,0 -  x und y Position von der Wand
+	 * @param - 0,600 -  x und y Position von der Wand 
+	 */
 	public Wall(){
 		
 	super(1,600);
