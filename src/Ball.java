@@ -16,6 +16,30 @@ public class Ball extends GImage implements Runnable {
 	 * @variable bricksScore Variable ist genutzt fuer die Aufzahlung von der Punktzahl
 	 */
 	private static double posx = 350;
+	public static double getPosx() {
+		return posx;
+	}
+
+	public static void setPosx(double posx) {
+		Ball.posx = posx;
+	}
+
+	public static double getPosy() {
+		return posy;
+	}
+
+	public static void setPosy(double posy) {
+		Ball.posy = posy;
+	}
+
+	public static double getPAUSE_TIME() {
+		return PAUSE_TIME;
+	}
+
+	public static void setPAUSE_TIME(double pAUSE_TIME) {
+		PAUSE_TIME = pAUSE_TIME;
+	}
+
 	private static double posy = 470;
 	private static double PAUSE_TIME = 4;
 	static int bricksOutside;
