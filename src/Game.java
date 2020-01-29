@@ -9,6 +9,11 @@ import java.io.PrintWriter;
 import acm.graphics.*;
 import acm.program.*;
 
+/**
+ * Diese Klasse behandelt allgemeine Funktionen im Spiel, wie z.B. das Laufen von Spiel und Seitenwechsel. Und erstellt die Objekte, die Hintergrundmusik, die Zeit und den Punktestand.
+Und diese Klasse macht es moeglich, dass das Spiel das Klicken auf die Tastatur und das Klick-Fenster erkennt.
+ * @author Imron Gamidli
+ */
 public class Game extends GraphicsProgram {
 	private static final long serialVersionUID = 1L;
 
@@ -79,7 +84,7 @@ public class Game extends GraphicsProgram {
 	}
 
 	/**
-	 * Abspielen von Hintergründen
+	 * Abspielen von Hintergruenden
 	 */
 	private void addSound() {
 		sound = new GameSound();
@@ -88,7 +93,7 @@ public class Game extends GraphicsProgram {
 	}
 
 	/**
-	 * Begrüßungsbildschirm des Spiels, der den Gruppennamen, die Mitglieder und die Anweisungen erklärt
+	 * Begrueßungsbildschirm des Spiels, der den Gruppennamen, die Mitglieder und die Anweisungen erklaert
 	 */
 	private void welcome() {
 		setBackground(Color.black);
@@ -120,7 +125,7 @@ public class Game extends GraphicsProgram {
 	}
 
 	/**
-	 * Methode zum Hinzufügen einer Wand zur Spieleseite
+	 * Methode zum Hinzufuegen einer Wand zur Spieleseite
 	 */
 	private void addWall() {
 		wall = new Wall();
@@ -128,7 +133,7 @@ public class Game extends GraphicsProgram {
 	}
 
 	/**
-	 *  Methode zum Hinzufügen von Bar zur Spieleseite
+	 *  Methode zum Hinzufuegen von Bar zur Spieleseite
 	 */
 	private void addBar() {
 		bar = new Bar();
@@ -146,7 +151,7 @@ public class Game extends GraphicsProgram {
 	}
 
 	/**
-	 * Methode zum Hinzufügen von 5 Reihen von Bloecken zur Spieleseite
+	 * Methode zum Hinzufuegen von 5 Reihen von Bloecken zur Spieleseite
 	 */
 	private void addBrick() {
 		bricks = new Brick[6][11];
@@ -166,8 +171,8 @@ public class Game extends GraphicsProgram {
 	}
 
 	/**
-	 * Diese Methode zählt die Zeit und das Punkteergebnis und 
-	 * enthält auch die Hauptschleife des Spiels.
+	 * Diese Methode zaehlt die Zeit und das Punkteergebnis und 
+	 * enthaelt auch die Hauptschleife des Spiels.
 	 */
 	private void addCounter() {
 		addHighScore();
@@ -237,7 +242,7 @@ public class Game extends GraphicsProgram {
 	}
 
 	/**
-	 *  diese Methode zählt die Zeit und das Punktergebnis
+	 *  diese Methode zaehlt die Zeit und das Punktergebnis
 	 */
 	private void countScore() {
 		// um die Laufzeit des Spiels anzuzeigen
@@ -272,7 +277,7 @@ public class Game extends GraphicsProgram {
 	}
 
 	/**
-	 * Diese Methode fügt dem Bildschirm ein gelesene Highscore-Label hinzu.
+	 * Diese Methode fuegt dem Bildschirm ein gelesene Highscore-Label hinzu.
 	 */
 	private void addHighScore() {
 		readHighScore();
@@ -308,7 +313,7 @@ public class Game extends GraphicsProgram {
 
 	/**
 	 * Bei dieser Methode wird der Balken nach rechts oder links bewegt, 
-	 * je nachdem, welche Taste gedrückt wird.
+	 * je nachdem, welche Taste gedrueckt wird.
 	 */
 	public void keyPressed(KeyEvent e) {
 		switch (e.getKeyCode()) {

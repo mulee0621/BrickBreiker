@@ -12,12 +12,8 @@ import acm.graphics.*;
 import acm.program.*;
 import acm.util.RandomGenerator;
 
-
-
-
 /*
  * Dieser Klass behandelt sich der Wand des Spiels 
- * 
  * 
  * @author Hussain
  */
