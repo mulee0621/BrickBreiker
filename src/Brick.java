@@ -1,8 +1,12 @@
 import java.awt.Color;
 import acm.graphics.*;
 /**
- * This class is Brick and extending Rectangle class
+<<<<<<< HEAD
+ * Diese Klasse behandelt die Darstellung von Blöcken und gibt Eigenschaften
+ * von der x-Startposition, y-Startposition, Größe und Farben ein.
  * @author Myunguen Lee
+ * 
+>>>>>>> branch 'Develop' of https://gitlab.cs.hs-fulda.de/fdlt3504/brickbreaker.git
  */
 public class Brick extends GRect{
 	private static final long serialVersionUID = 1L;

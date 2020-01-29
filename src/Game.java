@@ -23,29 +23,41 @@ public class Game extends GraphicsProgram {
 
 	protected static Ball ball;
 
-	// sound attributes
+	/**
+	 *  Sound-Attribute
+	 */
 	private GameSound sound;
 	private Thread soundT;
 
 	protected static Brick[][] bricks;
 
-	// score attributes
+	/** 
+	 * Punkte-Attribute
+	 */
 	private int highScore;
 	private GLabel highScoreL;
 	private String highScoreString;
 
-	// score counter by n of bricks
+	/**
+	 * Punktezähler der berührten Bloeken
+	 */
 	private GLabel yourScoreB;
 
-	// time attributes
+	/**
+	 *  Zeit-Attribute
+	 */
 	private int gameTime;
 	private GLabel gameTimeLable;
 
-	// file reader and writer
+	/**
+	 * Dateileser und -schreiber
+	 */
 	private BufferedReader br = null;
 	PrintWriter pw;
 
-	// initializes screen
+	/**
+	 * initialisiert den Bildschirm
+	 */
 	@Override
 	public void init() {
 		addSound();
@@ -54,7 +66,9 @@ public class Game extends GraphicsProgram {
 		welcome();
 	}
 
-	// main body of the game, used each time after game over
+	/**
+	 * Hauptteil des Spiels, der auch jedes Mal nach Spielende verwendet wird
+	 */
 	@Override
 	public void run() {
 		addWall();
@@ -64,29 +78,33 @@ public class Game extends GraphicsProgram {
 		addCounter();
 	}
 
-	// enables sound
+	/**
+	 * Abspielen von Hintergründen
+	 */
 	private void addSound() {
 		sound = new GameSound();
 		soundT = new Thread(sound);
 		soundT.start();
 	}
 
-	// welcome screen of the game
+	/**
+	 * Begrüßungsbildschirm des Spiels, der den Gruppennamen, die Mitglieder und die Anweisungen erklärt
+	 */
 	private void welcome() {
 		setBackground(Color.black);
 
-		// logo on the screen
+		// Logo auf der Startseite
 		GImage logo = new GImage("logo.png");
 		logo.scale(0.3);
 		add(logo, (getWidth() - logo.getWidth()) / 2, (getHeight() - logo.getHeight()) * 3 / 5);
 
-		// developers list on the screen
+		// Entwicklerliste auf der Startseite
 		GLabel devListLable = new GLabel("GeekBash : Imron, Myung, Kristijan, Hossain, Tulina");
 		devListLable.setFont("Times-20");
 		devListLable.setColor(Color.white);
 		add(devListLable, (getWidth() - devListLable.getWidth()) / 2, (getHeight() - logo.getHeight()) * 2 / 5);
 
-		// instructions
+		// Anleitungen
 		GLabel instLable1 = new GLabel("Instructions: CLICK - To begin , SPACE - To start the ball");
 		instLable1.setFont("Times-20");
 		instLable1.setColor(Color.green);
@@ -101,19 +119,25 @@ public class Game extends GraphicsProgram {
 
 	}
 
-	// method adds wall to the screen
+	/**
+	 * Methode zum Hinzufügen einer Wand zur Spieleseite
+	 */
 	private void addWall() {
 		wall = new Wall();
 		add(wall);
 	}
 
-	// method adds Bar to the screen
+	/**
+	 *  Methode zum Hinzufügen von Bar zur Spieleseite
+	 */
 	private void addBar() {
 		bar = new Bar();
 		add(bar);
 	}
 
-	// method creates an object a ball and initializes the thread
+	/**
+	 * Verfahren zum Erzeugen eines Objekts, das ein Ball ist und den Faden initialisiert
+	 */
 	private void addBall() {
 		ball = new Ball();
 		add(ball);
@@ -121,7 +145,9 @@ public class Game extends GraphicsProgram {
 		t1.start();
 	}
 
-	// method adds 5 rows of bricks to the screen
+	/**
+	 * Methode zum Hinzufügen von 5 Reihen von Bloecken zur Spieleseite
+	 */
 	private void addBrick() {
 		bricks = new Brick[6][11];
 		Color color[] = { Color.red, Color.orange, Color.yellow, Color.green, Color.blue };
@@ -140,8 +166,8 @@ public class Game extends GraphicsProgram {
 	}
 
 	/**
-	 * This method counts the time and score this method also contains main loop of
-	 * game.
+	 * Diese Methode zählt die Zeit und das Punkteergebnis und 
+	 * enthält auch die Hauptschleife des Spiels.
 	 */
 	private void addCounter() {
 		addHighScore();
@@ -151,24 +177,26 @@ public class Game extends GraphicsProgram {
 		GameOver();
 
 	}
-
-	// this method is used when it is game over
+	/**
+	 * Diese Methode wird verwendet, wenn das Spiel vorbei ist.
+	 */
 	private void GameOver() {
 
-		// music stops when gameover
+		// Die Musik hört auf, wenn die Partie vorbei ist.
 		soundT.stop();
 
-		// GameOver and Restart labels
+		// GameOver Label
 		GImage over = new GImage("GameOver.png");
 		over.scale(0.2);
 		add(over, (getWidth() - over.getWidth()) / 2, (getHeight() - over.getHeight()) / 2);
 
+		// Neustart-Label
 		GLabel newGame = new GLabel("CLICK - NEW game!");
 		newGame.setFont("Times-20");
 		newGame.setColor(Color.white);
 		add(newGame, getWidth() / 2, getHeight() * 4 / 5);
 
-		// saving high score
+		// hohe Punktzahl speichern
 		if (highScore < Ball.bricksScore) {
 			highScore = Ball.bricksScore;
 			writeNewHighScore();
@@ -180,7 +208,9 @@ public class Game extends GraphicsProgram {
 
 	}
 
-	// this method starts new new game after game over
+	/**
+	 * diese Methode, um ein neues Spiel zu beginnen, nachdem das Spiel beendet ist
+	 */
 	private void beginNewGame() {
 		GameOver = false;
 		gameTime = 0;
@@ -192,7 +222,9 @@ public class Game extends GraphicsProgram {
 
 	}
 
-	// this method writes high score to the file
+	/**
+	 *  diese Methode, um eine hohe Punktzahl in die textdatei zu schreiben
+	 */
 	private void writeNewHighScore() {
 		try {
 			pw = new PrintWriter(new FileWriter("highScore.txt"), false);
@@ -204,26 +236,30 @@ public class Game extends GraphicsProgram {
 
 	}
 
-	// this mehtod counts the time and score
+	/**
+	 *  diese Methode zählt die Zeit und das Punktergebnis
+	 */
 	private void countScore() {
-		// time
+		// um die Laufzeit des Spiels anzuzeigen
 		gameTimeLable.setLabel("TIME: " + gameTime);
 		add(gameTimeLable, 700 / 2 - gameTimeLable.getWidth() / 2, 530);
 
-		// bricks score
+		// um zu zeigen, wie viele Bloecken verschwunden sind
 		yourScoreB.setLabel("BRICKS SCORE: " + Ball.bricksScore);
 		add(yourScoreB, 680 - yourScoreB.getWidth(), 530);
 		gameTime++;
 		pause(100);
 
-		// music repeats after 1000 points
+		// die Hintergrundmusik zu wiederholen, nachdem 1000 Punkte gesammelt wurden
 		if (gameTime % 1000 == 0) {
 			soundT.stop();
 			addSound();
 		}
 	}
 
-	// this method creates time and score label and adds to the screen
+	/**
+	 * zum Erstellen von Zeit- und Punktebezeichnungen und fügt dem Bildschirm
+	 */
 	private void initialiseScore() {
 		gameTimeLable = new GLabel("TIME: " + gameTime);
 		gameTimeLable.setFont("Arial-18");
@@ -235,8 +271,9 @@ public class Game extends GraphicsProgram {
 
 	}
 
-	// this method reads high score from file and adds high score label to the
-	// screen
+	/**
+	 * Diese Methode fügt dem Bildschirm ein gelesene Highscore-Label hinzu.
+	 */
 	private void addHighScore() {
 		readHighScore();
 		highScoreL = new GLabel("High Score: " + highScore);
@@ -245,7 +282,9 @@ public class Game extends GraphicsProgram {
 		add(highScoreL, 10, 530);
 	}
 
-	// this method reads high score from file
+	/**
+	 * Diese Methode liest die hoesten Punktzahl aus der Datei
+	 */
 	private void readHighScore() {
 		try {
 			br = new BufferedReader(new FileReader("highScore.txt"));
@@ -267,8 +306,10 @@ public class Game extends GraphicsProgram {
 
 	}
 
-	// this method makes bar to move to the right or to the left depending on which
-	// key is pressed
+	/**
+	 * Bei dieser Methode wird der Balken nach rechts oder links bewegt, 
+	 * je nachdem, welche Taste gedrückt wird.
+	 */
 	public void keyPressed(KeyEvent e) {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_RIGHT:
