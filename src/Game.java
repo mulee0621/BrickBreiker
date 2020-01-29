@@ -93,24 +93,18 @@ public class Game extends GraphicsProgram {
 	private void welcome() {
 		setBackground(Color.black);
 
-		/**
-		 *  Logo auf der Startseite
-		 */
+		// Logo auf der Startseite
 		GImage logo = new GImage("logo.png");
 		logo.scale(0.3);
 		add(logo, (getWidth() - logo.getWidth()) / 2, (getHeight() - logo.getHeight()) * 3 / 5);
 
-		/**
-		 * Entwicklerliste auf der Startseite
-		 */
+		// Entwicklerliste auf der Startseite
 		GLabel devListLable = new GLabel("GeekBash : Imron, Myung, Kristijan, Hossain, Tulina");
 		devListLable.setFont("Times-20");
 		devListLable.setColor(Color.white);
 		add(devListLable, (getWidth() - devListLable.getWidth()) / 2, (getHeight() - logo.getHeight()) * 2 / 5);
 
-		/**
-		 * Anleitungen
-		 */
+		// Anleitungen
 		GLabel instLable1 = new GLabel("Instructions: CLICK - To begin , SPACE - To start the ball");
 		instLable1.setFont("Times-20");
 		instLable1.setColor(Color.green);
@@ -188,29 +182,21 @@ public class Game extends GraphicsProgram {
 	 */
 	private void GameOver() {
 
-		/**
-		 * Die Musik hört auf, wenn die Partie vorbei ist.
-		 */
+		// Die Musik hört auf, wenn die Partie vorbei ist.
 		soundT.stop();
 
-		/**
-		 * GameOver Label
-		 */
+		// GameOver Label
 		GImage over = new GImage("GameOver.png");
 		over.scale(0.2);
 		add(over, (getWidth() - over.getWidth()) / 2, (getHeight() - over.getHeight()) / 2);
 
-		/**
-		 * Neustart-Label
-		 */
+		// Neustart-Label
 		GLabel newGame = new GLabel("CLICK - NEW game!");
 		newGame.setFont("Times-20");
 		newGame.setColor(Color.white);
 		add(newGame, getWidth() / 2, getHeight() * 4 / 5);
 
-		/**
-		 * hohe Punktzahl speichern
-		 */
+		// hohe Punktzahl speichern
 		if (highScore < Ball.bricksScore) {
 			highScore = Ball.bricksScore;
 			writeNewHighScore();
@@ -254,23 +240,17 @@ public class Game extends GraphicsProgram {
 	 *  diese Methode zählt die Zeit und das Punktergebnis
 	 */
 	private void countScore() {
-		/**
-		 * um die Laufzeit des Spiels anzuzeigen
-		 */
+		// um die Laufzeit des Spiels anzuzeigen
 		gameTimeLable.setLabel("TIME: " + gameTime);
 		add(gameTimeLable, 700 / 2 - gameTimeLable.getWidth() / 2, 530);
 
-		/**
-		 * um zu zeigen, wie viele Bloecken verschwunden sind
-		 */
+		// um zu zeigen, wie viele Bloecken verschwunden sind
 		yourScoreB.setLabel("BRICKS SCORE: " + Ball.bricksScore);
 		add(yourScoreB, 680 - yourScoreB.getWidth(), 530);
 		gameTime++;
 		pause(100);
 
-		/**
-		 *  die Hintergrundmusik zu wiederholen, nachdem 1000 Punkte gesammelt wurden
-		 */
+		// die Hintergrundmusik zu wiederholen, nachdem 1000 Punkte gesammelt wurden
 		if (gameTime % 1000 == 0) {
 			soundT.stop();
 			addSound();
