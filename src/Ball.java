@@ -1,14 +1,11 @@
-import java.awt.Color;
-import java.awt.Graphics;
+
 import acm.graphics.*;
-import acm.graphics.GOval;
+
 
 public class Ball extends GImage implements Runnable {
 	// variablen für ball
 	private static double posx = 350;
 	private static double posy = 470;
-	private static double grossx = 20;
-	private static double grossy = 20;
 	private static double PAUSE_TIME = 4;
 	static int bricksOutside;
 	static int bricksScore;
@@ -61,9 +58,8 @@ public class Ball extends GImage implements Runnable {
 			}
 			if (posy >= 600) { 																// if für unterfallen von den ball
 				Game.GameOver = true;
-				break;
 			}
-			for (int k = 0; k < 4; k++) {
+			for (int k = 0; k < 5; k++) {
 				for (int j = 0; j < 11; j++) {
 					if (Game.ball.getBounds().intersects(Game.bricks[k][j].getBounds())) { // Haupt schleife für
 																							// Kollision mit böocke
@@ -71,8 +67,9 @@ public class Ball extends GImage implements Runnable {
 						Game.bricks[k][j].setLocation(-100, -100);							// verschiebe die Blöcke auf diese koordinaen
 						bricksOutside++;													// zaehler feur vie fiele bloecke waren getroffen
 						bricksScore++;														// zaehler feur vie fiele bloecke waren getroffen
-						if (bricksOutside == 44) {
-							
+						if (bricksOutside == 55) {
+							setLocation(350, 470);
+							ywert=-1;
 							generateNewBricks();}											//aufruff von der methode
 						if (xfirst) { 														// erste kollision geht immer nach rechts
 							xfirst = false;
@@ -84,7 +81,7 @@ public class Ball extends GImage implements Runnable {
 
 			}
 
-			System.out.println("X:" + posx + ", Y:" + posy);
+			
 			i = 0; 																			// i wird auf 0 gesetzt damit die schleife unendlich wird ohne dass risiko von
 																							// einen int overflow
 		}
