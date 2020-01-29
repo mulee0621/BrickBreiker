@@ -5,6 +5,7 @@ import acm.graphics.*;
  * Diese Klasse behandelt die Darstellung von Bloecken und gibt Eigenschaften
  * von der x-Startposition, y-Startposition, Groeﬂe und Farben ein.
  * @author Myunguen Lee
+ *
  */
 public class Brick extends GRect{
 	private static final long serialVersionUID = 1L;

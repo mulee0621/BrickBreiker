@@ -12,10 +12,11 @@ import acm.graphics.*;
 import acm.program.*;
 import acm.util.RandomGenerator;
 
-/*
- * Dieser Klass behandelt sich der Wand des Spiels 
+/**
  * 
- * @author Hussain
+ * Dieser Klass behandelt sich der Wand des Spiels
+ * @author Hussain Ali
+ *
  */
 public  class Wall extends GPen {
 	
@@ -35,9 +36,5 @@ public  class Wall extends GPen {
 	setColor(Color.YELLOW);
 		
 	}
-	
-	
-	
-	  
 	
 }

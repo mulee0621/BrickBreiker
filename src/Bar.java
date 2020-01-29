@@ -1,12 +1,12 @@
+import java.awt.Color;
+import acm.graphics.GRect;
 /**
  * Diese Klasse dient der Herstellung von Plattform und der Festlegung ihrer Figur und ersten Position.
  * und die Bewegungsdistanz (die die Geschwindigkeit des Bars sein kann) einstellen und damit kann der Flattform nach hinten 
  * und in die richtige Richtung bewegt werden.
+ * @author Tulina Maharjan
+ *
  */
-
-import java.awt.Color;
-import acm.graphics.GRect;
-
 public class Bar extends GRect {
 	private static double posX=300;
 	private static double posY=500;

@@ -1,8 +1,8 @@
 import acm.graphics.*;
 
 /**
- * Diese Klasse ist dafuer zustaendig, dass die der Ball erstellt, bewegt und nach eine gewisse Zeit die Bloecken wieder erstellen  
- * @author Kristijan
+ *  Diese Klasse ist dafuer zustaendig, dass die der Ball erstellt, bewegt und nach eine gewisse Zeit die Bloecken wieder erstellen.
+ * @author Kristijan Lazeski
  *
  */
 public class Ball extends GImage implements Runnable {

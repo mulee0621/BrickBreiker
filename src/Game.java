@@ -328,6 +328,10 @@ public class Game extends GraphicsProgram {
 		}
 	}
 
+	/**
+	 * Diese main methode macht den Spielstart
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		new Game().start();
 	}
