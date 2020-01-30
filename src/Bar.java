@@ -9,6 +9,10 @@ import acm.graphics.GRect;
  */
 public class Bar extends GRect {
 	private static double posX=300;
+	private static double posY=500;
+	private static double width=100;
+	private static double height=8;
+	private static double dx=25;
 	public static double getPosX() {
 		return posX;
 	}
@@ -41,11 +45,7 @@ public class Bar extends GRect {
 		Bar.height = height;
 	}
 
-	private static double posY=500;
-	private static double width=100;
-	private static double height=8;
-
-	private static double dx=25;
+	
 	
 	//dies ist Konstrukteur
 	public Bar() {

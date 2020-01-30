@@ -1,16 +1,16 @@
 import java.io.FileInputStream;
-
 import javazoom.jl.player.Player;
-
-
-
+/**
+ * Diese Klasse spielt Musik im Hintergrund mit eigenem Thread.
+ * @author Imron Gamidli
+ *
+ */
 public class GameSound implements Runnable {
+	 /**
+	  * Dieser Method wird gerunnt wenn ein Thread erstellt wird. 
+	  */
 	@Override
 	public void run() {
-		playJumpSound();
-
-	}
-	private static void playJumpSound() {
 		try {
 
 			FileInputStream fis = new FileInputStream("gameSound.mp3");
@@ -20,6 +20,5 @@ public class GameSound implements Runnable {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-
 	}
 }

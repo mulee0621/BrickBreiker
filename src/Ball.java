@@ -16,6 +16,11 @@ public class Ball extends GImage implements Runnable {
 	 * @variable bricksScore Variable ist genutzt fuer die Aufzahlung von der Punktzahl
 	 */
 	private static double posx = 350;
+	private static double posy = 470;
+	private static double PAUSE_TIME = 4;
+	static int bricksOutside;
+	static int bricksScore;
+	
 	public static double getPosx() {
 		return posx;
 	}
@@ -40,12 +45,7 @@ public class Ball extends GImage implements Runnable {
 		PAUSE_TIME = pAUSE_TIME;
 	}
 
-	private static double posy = 470;
-	private static double PAUSE_TIME = 4;
-	static int bricksOutside;
-	static int bricksScore;
-
-	// konstruktoren
+	
 	/**
 	 * Diese Methode stellt den Ball mit photo auf der Bildschirm.
 	 */
@@ -55,7 +55,7 @@ public class Ball extends GImage implements Runnable {
 		scale(0.25);
 	}
 
-	// methoden die den Ball bewegen
+
 	/**
 	 * Diese Methode ist Zustaendig fuer die Bewegung von der Ball und di kollision von der Ball mit der Wand, Platform und Bloecke
 	 * @variable xfirst diese Variable ist genutzt um der erste Kollision von der Ball nach rechts zu schieben
@@ -153,6 +153,9 @@ public class Ball extends GImage implements Runnable {
 		bricksOutside=0;
 	}
 
+	 /**
+	  * Dieser Method wird gerunnt wenn ein Thread erstellt wird. 
+	  */
 	@Override
 	public void run() {
 		bewegung();
