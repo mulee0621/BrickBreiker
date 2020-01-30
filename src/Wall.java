@@ -1,16 +1,6 @@
-import java.awt.Graphics;
+
 import java.awt.Color;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 import acm.graphics.*;
-import acm.program.*;
-import acm.util.RandomGenerator;
 
 /**
  * 
@@ -20,6 +10,11 @@ import acm.util.RandomGenerator;
  */
 public  class Wall extends GPen {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * 
 	 * @param - 1,600 -  x und y koordinate 

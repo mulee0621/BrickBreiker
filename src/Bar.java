@@ -8,6 +8,10 @@ import acm.graphics.GRect;
  *
  */
 public class Bar extends GRect {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static double posX=300;
 	private static double posY=500;
 	private static double width=100;

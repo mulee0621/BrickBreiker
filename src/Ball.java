@@ -6,7 +6,7 @@ import acm.graphics.*;
  *
  */
 public class Ball extends GImage implements Runnable {
-
+	private static final long serialVersionUID = 1L;
 	// variablen fuer ball
 	/**
 	 * @variable posx diese Variable ist genutzt fuer die bewegung auf die x Achse
@@ -69,10 +69,9 @@ public class Ball extends GImage implements Runnable {
 		boolean xfirst = true;
 		double xwert = 0;
 		double ywert = -1;
-		int i = 0;
 		double platschl = 0;
 
-		for (; !Game.GameOver; i++) { 														// Haupt schleife fuer ball bewegung
+		for (; !Game.GameOver; ) { 														// Haupt schleife fuer ball bewegung
 			posy = getY() + ywert; 															// POSITION Y (variable berechnung fuer berechnung von position)
 			posx = getX() + xwert; 															// POSITION X (variable berechnung fuer berechnung von position)
 			setLocation(posx, posy); 														// setze den ball auf die gegebenen koordinaten
@@ -127,10 +126,7 @@ public class Ball extends GImage implements Runnable {
 				}
 
 			}
-
-			
-			i = 0; 																			// i wird auf 0 gesetzt damit die schleife unendlich wird ohne dass risiko von
-																							// einen int overflow
+																	
 		}
 
 	}

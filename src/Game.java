@@ -185,6 +185,7 @@ public class Game extends GraphicsProgram {
 	/**
 	 * Diese Methode wird verwendet, wenn das Spiel vorbei ist.
 	 */
+	@SuppressWarnings("deprecation")
 	private void GameOver() {
 
 		// Die Musik hört auf, wenn die Partie vorbei ist.
@@ -244,6 +245,7 @@ public class Game extends GraphicsProgram {
 	/**
 	 *  diese Methode zaehlt die Zeit und das Punktergebnis
 	 */
+	@SuppressWarnings("deprecation")
 	private void countScore() {
 		// um die Laufzeit des Spiels anzuzeigen
 		gameTimeLable.setLabel("TIME: " + gameTime);
