@@ -114,7 +114,7 @@ public class Ball extends GImage implements Runnable {
 						bricksOutside++;													// zaehler feur vie fiele bloecke waren getroffen
 						bricksScore++;														// zaehler feur vie fiele bloecke waren getroffen
 						if (bricksOutside == 55) {
-							setLocation(350, 470);
+							setLocation(350, 350 );
 							ywert=-1;
 							generateNewBricks();}											//aufruff von der methode
 						if (xfirst) { 														// erste kollision geht immer nach rechts
@@ -137,7 +137,7 @@ public class Ball extends GImage implements Runnable {
 		int x = 18;
 		int y = 18;
 
-		for (int i = 0; i < 6; i++) {
+		for (int i = 0; i < 5; i++) {
 			for (int j = 0; j < 11; j++) {
 				Game.bricks[i][j].setLocation(x,y);
 				x += 60;
