@@ -65,7 +65,7 @@ public class Ball extends GImage implements Runnable {
 
 	
 	/**
-	 * Diese Methode stellt den Ball mit photo auf der Bildschirm.
+	 * Dieser Konstruktor stellt den Ball mit photo auf der Bildschirm.
 	 */
 	public Ball() {
 		super("Kreitermithelmet.png");

@@ -72,20 +72,26 @@ public class Bar extends GRect {
 
 	
 	
-	//dies ist Konstrukteur
+	/**
+	 * Konstruktor fuer Bar
+	 */
 	public Bar() {
 		super(posX,posY,width,height);
 		setFilled(true);
 		setColor(Color.BLUE);
 	}
 
-	//Methode bewegt den Balken nach rechts
+	/**
+	 * Methode bewegt den Balken nach rechts
+	 */
 	public void moveRight() {
 		if(getX()<581) move(dx,0);	
 		else setLocation(581, getY());
 	}
 
-	//Methode bewegt den Balken nach links
+	/**
+	 * Methode bewegt den Balken nach links
+	 */
 	public void moveLeft() {
 		if (getX()>2) move(-dx,0); 
 	    else setLocation(2, getY());

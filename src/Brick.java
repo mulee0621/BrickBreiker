@@ -11,7 +11,7 @@ public class Brick extends GRect{
 	private static final long serialVersionUID = 1L;
 
 /**
- * 
+ * Konstruktor fuer Brick
  * @param x x-Koordinate von Brick
  * @param y y-Koordinate von Brick
  * @param c Farbe von Brick
