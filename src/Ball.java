@@ -20,27 +20,45 @@ public class Ball extends GImage implements Runnable {
 	private static double PAUSE_TIME = 4;
 	static int bricksOutside;
 	static int bricksScore;
-	
+	/**
+	 * Diese Methode gibt x position von Ball
+	 * @return posx- x position von Ball
+	 */
 	public static double getPosx() {
 		return posx;
 	}
-
+	/**
+	 * Diese Methode legt x position von Ball
+	 * @param posx- x position von Ball
+	 */
 	public static void setPosx(double posx) {
 		Ball.posx = posx;
 	}
-
+	/**
+	 * Diese Methode gibt y position von Ball
+	 * @return posy- y position von ball
+	 */
 	public static double getPosy() {
 		return posy;
 	}
-
+	/**
+	 * Diese Methode legt y position von Ball
+	 * @param posy- y position von Ball
+	 */
 	public static void setPosy(double posy) {
 		Ball.posy = posy;
 	}
-
+	/**
+	 * Diese Methode gibt geschwendigkeit von Ball
+	 * @return Pause zeit von Ball
+	 */
 	public static double getPAUSE_TIME() {
 		return PAUSE_TIME;
 	}
-
+	/**
+	 * Diese Methode legt geschwendigkeit von Ball
+	 * @param pAUSE_TIME
+	 */
 	public static void setPAUSE_TIME(double pAUSE_TIME) {
 		PAUSE_TIME = pAUSE_TIME;
 	}

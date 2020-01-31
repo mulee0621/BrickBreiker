@@ -8,43 +8,64 @@ import acm.graphics.GRect;
  *
  */
 public class Bar extends GRect {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private static double posX=300;
 	private static double posY=500;
 	private static double width=100;
 	private static double height=8;
 	private static double dx=25;
+	
+	/**
+	 * Diese Methode gibt x position von Bar 
+	 * @return posx- x position von Bar
+	 */
 	public static double getPosX() {
 		return posX;
 	}
-
+	/**
+	 * Diese Methode legt x position von Bar
+	 * @param posX - x position von Bar
+	 */
 	public static void setPosX(double posX) {
 		Bar.posX = posX;
 	}
-
+	/**
+	 * Diese Methode gibt y position von Bar
+	 * @return posY- y position von Bar
+	 */
 	public static double getPosY() {
 		return posY;
 	}
-
+	/**
+	 * Diese Methode legt y position von Bar
+	 * @param posY y position von Bar
+	 */
 	public static void setPosY(double posY) {
 		Bar.posY = posY;
 	}
-
+	/**
+	 * Diese Methode gibt width von Bar
+	 */
 	public double getWidth() {
 		return width;
 	}
-
+	/**
+	 * Diese Methode legt width von Bar
+	 * @param width Breite von Bar
+	 */
 	public static void setWidth(double width) {
 		Bar.width = width;
 	}
-
+	/**
+	 * Diese Methode gibt height von Bar
+	 */
 	public double getHeight() {
 		return height;
 	}
-
+	/**
+	 * Diese Methode legt height von Bar
+	 * @param height Höhe von Bar
+	 */
 	public static void setHeight(double height) {
 		Bar.height = height;
 	}
