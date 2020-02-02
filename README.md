@@ -15,3 +15,9 @@ Readme für unser Git projekt. Instroktionen wo was liegt.
 3. Software Doku Test: Die Datei ist in der Verzechnis "Dokumentation von Geek Bash" unter der Name "JUnit Test - GeekBash.pdf"
 
 4. Software Doku Dokumentation: Javadoc html Datei ist in der Verzechnis "doc"
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    Ausversehen würde der Game Over Logo an den 31 Januar gelöscht. Der letzte commit der an 02 Februar gemacht war ist nur da um dieses Logo zu pushen.
+    Es würde garnichts grundsäzliches verändert. Deshalb bieten wir, dass dieser commit im Anspruch genommen wird. 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    
